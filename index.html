@@ -170,8 +170,16 @@
     @media (max-width: 560px) { .ba { aspect-ratio: 4 / 5; } }
     .ba-img { position: absolute; inset: 0; display: block; }
     .ba-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    /* the "before" side: the same frame, flattened the way an untouched capture looks */
-    .ba-img.before { filter: saturate(0.42) contrast(0.78) brightness(1.12); }
+    /* Left = the frame straight off the phone, untouched. */
+    /* Right = a grade: deeper sky, warmer stone, more bite in the midtones. */
+    .ba-img.after { filter: contrast(1.22) saturate(1.45) brightness(0.98); }
+    .ba-img.after::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(24, 58, 150, 0.42) 0%, rgba(24, 58, 150, 0.10) 42%, rgba(0, 0, 0, 0) 58%),
+        linear-gradient(0deg, rgba(255, 150, 40, 0.20) 0%, rgba(255, 170, 60, 0.14) 30%, rgba(0, 0, 0, 0) 62%);
+      mix-blend-mode: soft-light;
+    }
     .ba-img.after { clip-path: inset(0 0 0 var(--pos)); }
     .ba-tag {
       position: absolute; top: 14px; z-index: 2;
@@ -206,22 +214,22 @@
     .ba-caption { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
 
     /* ---------- Playground (mini editor) ---------- */
-    .play-grid { margin-top: 36px; display: grid; gap: 20px; align-items: stretch; }
-    @media (min-width: 820px) { .play-grid { grid-template-columns: 1.05fr 0.95fr; } }
+    .play-grid { margin-top: 36px; display: grid; gap: 24px; align-items: stretch; }
+    @media (min-width: 820px) { .play-grid { grid-template-columns: 0.82fr 1.18fr; } }
     .play-photo {
       border-radius: var(--r-l); overflow: hidden; position: relative;
       aspect-ratio: 4 / 5; box-shadow: var(--shadow-deep);
       min-height: 320px;
     }
-    /* Keep the frame tall enough that the flower stays in shot next to the bee. */
+    /* Portrait on every viewport: matches the source 3:4, so nothing is cropped. */
     @media (min-width: 820px) {
-      .play-photo { aspect-ratio: 1 / 1; }
+      .play-photo { aspect-ratio: 3 / 4; }
       .play-panel { align-self: center; }
     }
     .play-photo picture { position: absolute; inset: 0; display: block; }
     .play-photo img {
       width: 100%; height: 100%; object-fit: cover; display: block;
-      object-position: center 38%;
+      object-position: center;
       transition: filter 0.08s linear;
     }
     .play-panel {
@@ -513,7 +521,8 @@
             <img src="media/castle-1200.jpg"
                  srcset="media/castle-1200.jpg 1200w, media/castle-1800.jpg 1800w"
                  sizes="(min-width: 1120px) 1040px, 100vw"
-                 width="1200" height="750" loading="lazy" decoding="async" alt="">
+                 width="1200" height="750" loading="lazy" decoding="async"
+                 alt="The walls of Carcassonne at blue hour, straight off the phone and unedited">
           </picture>
           <picture class="ba-img after">
             <source type="image/webp" srcset="media/castle-1200.webp 1200w, media/castle-1800.webp 1800w"
@@ -522,7 +531,7 @@
                  srcset="media/castle-1200.jpg 1200w, media/castle-1800.jpg 1800w"
                  sizes="(min-width: 1120px) 1040px, 100vw"
                  width="1200" height="750" loading="lazy" decoding="async"
-                 alt="The medieval walls of Carcassonne lit at blue hour, warm stone against a deep blue sky">
+                 alt="The same frame after grading: deeper blue sky and warmer lit stone">
           </picture>
           <span class="ba-tag before">Before</span>
           <span class="ba-tag after">After</span>
@@ -531,7 +540,7 @@
                  aria-label="Reveal the edited version">
         </div>
         <p class="ba-caption">
-          Both sides are the same photo — the left one flattened, to show what a grade brings back.
+          Left: straight off the phone, untouched. Right: the same frame, graded.
         </p>
       </div>
     </section>
