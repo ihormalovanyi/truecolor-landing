@@ -158,23 +158,14 @@
       background: var(--surface);
       display: flex; flex-direction: column;
     }
-    .screen .photo { flex: 1.1; }
-    .screen .panel { flex: 1; background: #fff; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-    .layer-row {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--surface); border-radius: 10px; padding: 8px 10px;
+    .screen .hero-video, .screen .hero-poster {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .layer-row .thumb { width: 20px; height: 20px; border-radius: 6px; flex: none; }
-    .layer-row span { font-size: 11px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; }
-    .layer-row .eye { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex: none; }
-    .layer-row.off .eye { background: var(--line); }
-    .layer-row.off span { color: var(--muted); }
-    .screen .toolbar {
-      background: #fff; border-top: 1px solid var(--line);
-      display: flex; justify-content: space-around; padding: 10px 8px 14px;
+    .screen .hero-poster { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .screen .hero-video { display: none; }
+      .screen .hero-poster { display: block; }
     }
-    .toolbar i { width: 22px; height: 22px; border-radius: 7px; background: var(--surface); }
-    .toolbar i.active { background: var(--blue); box-shadow: 0 3px 8px rgba(9, 116, 255, 0.4); }
 
     /* ---------- Sections ---------- */
     section { padding: 64px 0; }
@@ -501,30 +492,15 @@
           </div>
         </div>
 
-        <div class="phone" aria-hidden="true">
+        <div class="phone">
           <div class="screen">
-            <div class="photo photo-art"></div>
-            <div class="panel">
-              <div class="layer-row">
-                <span class="thumb" style="background:linear-gradient(135deg,#222,#eee)"></span>
-                <span>Curves</span><span class="eye"></span>
-              </div>
-              <div class="layer-row">
-                <span class="thumb" style="background:linear-gradient(135deg,#F5A623,#00C74C,#0974FF)"></span>
-                <span>Selective Color</span><span class="eye"></span>
-              </div>
-              <div class="layer-row off">
-                <span class="thumb" style="background:linear-gradient(135deg,#E8B08A,#7A5CC4)"></span>
-                <span>Split Toning</span><span class="eye"></span>
-              </div>
-              <div class="layer-row">
-                <span class="thumb" style="background:linear-gradient(135deg,#FFE3C2,#C46A4A)"></span>
-                <span>LUT · Look “Film 01”</span><span class="eye"></span>
-              </div>
-            </div>
-            <div class="toolbar">
-              <i class="active"></i><i></i><i></i><i></i>
-            </div>
+            <video class="hero-video" autoplay muted loop playsinline
+                   preload="metadata" poster="media/hero-poster.jpg"
+                   aria-label="Screen recording: editing a macro photo of a bumblebee with adjustment layers in True Color">
+              <source src="media/hero-demo.mp4" type="video/mp4">
+            </video>
+            <img class="hero-poster" src="media/hero-poster.jpg"
+                 alt="The True Color editor with a macro photo of a bumblebee and the layer stack open">
           </div>
         </div>
       </div>
