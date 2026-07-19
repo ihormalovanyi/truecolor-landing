@@ -26,6 +26,7 @@ python3 -m http.server 4173
 
 1. ✅ Акаунт створено, username `sandbox`.
 2. ✅ У `index.html` `action` форми вказує на `.../embed-subscribe/sandbox`.
+2а. ✅ Назва розсилки — «True Color», `from_name` — «True Color Team», опис без торгових марок.
 3. ✅ Double opt-in — вмикати не треба, Buttondown вимагає його для всіх розсилок за замовчуванням.
 4. ⏳ У Buttondown: **Settings** — вкажіть фізичну поштову адресу відправника перед першою розсилкою.
 
@@ -160,11 +161,14 @@ App Store Connect → ваша апка → вкладка **TestFlight** → с
 
 Поточне посилання: `https://testflight.apple.com/join/7uXSE9jy` (бета «True Color: Layer Photo Editor», перевірено — відкрита). Сторінка має `noindex`, тож у пошук не потрапить.
 
-### 3. Увімкнути редірект після підтвердження ← ЛИШИЛОСЯ
+### 3. ✅ Редірект після підтвердження — налаштовано й перевірено
 
-Buttondown → **Settings → Subscribing** → поле редіректу **після підтвердження підписки** (redirect after confirmation) → `https://gettruecolor.com/beta.html`.
+`subscription_confirmation_redirect_url` = `https://gettruecolor.com/beta.html`
+(Buttondown → **Settings → Subscribing**, поле редіректу після підтвердження підписки).
 
-Це працює **на безкоштовному плані** і має приємний побічний ефект: сторінку бачать лише ті, хто реально підтвердив пошту.
+Працює **на безкоштовному плані**. Приємний побічний ефект: сторінку бачать лише ті, хто реально підтвердив пошту.
+
+**Наскрізний тест пройдено 19.07.2026:** форма → лист-підтвердження → клік → `beta.html` з кнопкою TestFlight. Ланцюг замкнено.
 
 ### Альтернатива: лист замість сторінки (платно)
 
