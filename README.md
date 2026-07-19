@@ -67,6 +67,24 @@ B1 перевіряється так: підпишіть тестову адре
 - Прибрано неточність «email address and nothing else» → тепер згадано таймстемп згоди й тег списку.
 - Дата набуття чинності оновлена.
 
+### ⚠️ Правка від 19.07 (вечір): аналітика в застосунку
+
+Аудит проводився з хибною вхідною умовою «у апки немає аналітики» — насправді вона є. Privacy policy переписано за фактичним станом коду:
+
+**Активне зараз** (`AppDelegate.swift`): Firebase Analytics + Crashlytics, StoreKit 2 (підписки).
+**Підключене, але вимкнене порожнім ключем** (`AppConfig.swift`): Amplitude, Sentry.
+**Злінковане через CoreIntegrations, але не ініціалізоване в `AppDelegate`:** AppsFlyer, Facebook SDK, Google Ads on-device conversion, Amplitude Session Replay, Amplitude Experiment.
+**Мережа:** каталог фільтрів/LUT тягнеться з Firebase Hosting → IP користувача бачить Google.
+
+Події з `Services/Analytics.swift` (14 шт.): import_started, editor_opened, quick_action_used, quick_chip_used, layer_added, export_done, look_applied, lut_baked, filter_applied, onboarding_done, alchemy_*. Без PII та без даних зображень.
+
+**Що треба вирішити перед публічним релізом:**
+
+1. **ATT-промпт.** У коді не знайдено `ATTrackingManager`. Якщо AppsFlyer / Facebook / Google Ads conversion колись увімкнуться — Apple вимагає App Tracking Transparency, а GDPR — згоду. Зараз вони не ініціалізовані, тож заява «no advertising, no cross-context behavioural advertising» правдива. **Увімкнення цих SDK зробить її хибною** — тоді privacy треба переписувати одночасно з релізом.
+2. **Згода на аналітику в EU.** Зараз gate немає; policy декларує legitimate interest (Art. 6(1)(f)) — для першосторонньої продуктової аналітики без реклами це загальноприйнято, але ePrivacy для зберігання ідентифікаторів на пристрої суворо вимагає згоди. Найчистіше — екран-опт-аут у налаштуваннях апки.
+3. **Session Replay.** Якщо колись увімкнете `amplitudesessionreplay` — воно пише екран, а на екрані фото користувача. Це вже зовсім інша категорія даних і потребує окремої згоди й окремого абзацу в policy.
+4. **App Privacy label** в App Store Connect має збігатися з цією policy: Identifiers, Usage Data, Diagnostics — усі «Linked to user» / «Not linked» відповідно до реальності.
+
 ### Лишилось вам
 
 1. **Юридичне імʼя** для privacy policy (GDPR Art. 13(1)(a)) — надішліть, і я допишу. Реєстраційний номер і домашня адреса **не** потрібні.
