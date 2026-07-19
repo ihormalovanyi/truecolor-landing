@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>True Color — Photo Editing by Hand, for iPhone</title>
+  <meta name="description" content="A layered photo editor for iPhone: 26 editable adjustments, masks, Blend If, and your own LUTs. No AI choosing for you. Free during the beta, iOS 26+.">
+  <meta name="theme-color" content="#0974FF">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234DA0FF'/%3E%3Cstop offset='1' stop-color='%230974FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://gettruecolor.com/">
+  <meta property="og:title" content="True Color — Photo Editing by Hand, for iPhone">
+  <meta property="og:description" content="A layered photo editor for iPhone: 26 editable adjustments, masks, Blend If, and your own LUTs. No AI choosing for you. Free during the beta.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gettruecolor.com/">
+  <!-- Add og:image once you have one: <meta property="og:image" content="images/og.png"> -->
+  <style>
+    :root {
+      --blue: #0974FF;
+      --blue-press: #0765DB;
+      --bg: #FFFFFF;
+      --surface: #F0F3F7;
+      --success: #00C74C;
+      --text: #0E1726;
+      --muted: #5B6675;
+      --line: #E3E9F1;
+      --r-s: 8px;
+      --r-m: 16px;
+      --r-l: 24px;
+      --shadow-soft: 0 10px 30px rgba(14, 23, 38, 0.07);
+      --shadow-deep: 0 24px 60px rgba(14, 23, 38, 0.12);
+      --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='linear' slope='0.055'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .skip {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--blue); color: #fff; padding: 10px 16px; border-radius: var(--r-s);
+    }
+    .skip:focus { left: 12px; top: 12px; z-index: 10; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
+    }
+
+    /* ---------- Photo art (shared by hero mock and before/after) ---------- */
+    .photo-art {
+      background:
+        radial-gradient(120% 90% at 78% 18%, rgba(255, 236, 200, 0.9) 0%, rgba(255, 190, 130, 0.55) 28%, rgba(255, 158, 122, 0) 55%),
+        radial-gradient(24% 16% at 78% 20%, #FFF6E3 0%, rgba(255, 246, 227, 0) 100%),
+        linear-gradient(178deg, #FFD9A8 0%, #FF9E7A 30%, #C77BD0 55%, #5D5FB8 74%, #27407F 100%);
+      position: relative;
+    }
+    .photo-art::before {
+      /* sea shimmer */
+      content: ""; position: absolute; inset: 62% 0 0 0;
+      background: linear-gradient(180deg, rgba(255, 214, 170, 0.35) 0%, rgba(39, 64, 127, 0) 60%),
+                  linear-gradient(180deg, rgba(20, 34, 74, 0.25), rgba(12, 22, 52, 0.5));
+      mix-blend-mode: soft-light;
+    }
+    .photo-art::after {
+      /* grain + vignette */
+      content: ""; position: absolute; inset: 0;
+      background-image: var(--grain);
+      box-shadow: inset 0 0 90px rgba(16, 18, 44, 0.28);
+    }
+
+    /* ---------- Header ---------- */
+    header.site {
+      position: sticky; top: 0; z-index: 5;
+      background: rgba(255, 255, 255, 0.86);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-row {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .wordmark {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--text); text-decoration: none;
+    }
+    .wordmark .dot {
+      width: 26px; height: 26px; border-radius: 9px;
+      background: linear-gradient(135deg, #4DA0FF, var(--blue) 60%, #0553C4);
+      box-shadow: 0 4px 10px rgba(9, 116, 255, 0.35);
+      flex: none;
+    }
+    nav.site-nav { display: none; gap: 24px; }
+    nav.site-nav a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color 0.15s ease; }
+    nav.site-nav a:hover { color: var(--text); }
+    @media (min-width: 720px) { nav.site-nav { display: flex; } }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(180deg, #2E8BFF, var(--blue));
+      color: #fff;
+      font-size: 17px; font-weight: 600;
+      padding: 13px 24px; border-radius: 14px;
+      text-decoration: none; border: 0; cursor: pointer;
+      box-shadow: 0 8px 22px rgba(9, 116, 255, 0.32);
+      transition: transform 0.12s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+    .btn:hover { filter: brightness(1.06); box-shadow: 0 10px 26px rgba(9, 116, 255, 0.4); }
+    .btn:active { transform: translateY(1px); box-shadow: 0 5px 14px rgba(9, 116, 255, 0.3); }
+    .btn.small { font-size: 15px; padding: 8px 16px; border-radius: 10px; box-shadow: 0 5px 14px rgba(9, 116, 255, 0.25); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 76px 0 56px; overflow: hidden; position: relative; }
+    .hero::before {
+      content: ""; position: absolute; inset: -40% -20% 40% 30%;
+      background: radial-gradient(50% 50% at 60% 40%, rgba(9, 116, 255, 0.07), rgba(9, 116, 255, 0));
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; gap: 48px; align-items: center; position: relative; }
+    @media (min-width: 880px) { .hero-grid { grid-template-columns: 1.15fr 0.85fr; } }
+    .hero h1 {
+      font-size: clamp(38px, 7.5vw, 64px);
+      line-height: 1.04; letter-spacing: -0.028em; font-weight: 700;
+    }
+    .hero h1 .accent { color: var(--blue); }
+    .hero .lede {
+      margin-top: 22px; font-size: clamp(17px, 2.2vw, 20px);
+      color: var(--muted); max-width: 32em;
+    }
+    .hero-cta { margin-top: 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .hero-cta .ghost { color: var(--blue); text-decoration: none; font-size: 17px; font-weight: 500; }
+    .hero-cta .ghost:hover { text-decoration: underline; }
+    .pills { margin-top: 30px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      background: var(--surface); border-radius: 999px; padding: 6px 12px;
+    }
+    .pill strong { color: var(--text); font-weight: 600; }
+
+    /* Decorative phone mock */
+    .phone {
+      width: min(300px, 78vw); margin: 0 auto;
+      aspect-ratio: 9 / 19.5;
+      background: #FAFBFD;
+      border: 1px solid var(--line);
+      border-radius: 44px;
+      box-shadow: var(--shadow-deep), 0 2px 0 rgba(255, 255, 255, 0.9) inset;
+      padding: 12px; display: flex;
+      transform: rotate(1.4deg);
+    }
+    .screen {
+      flex: 1; border-radius: 34px; overflow: hidden;
+      background: var(--surface);
+      display: flex; flex-direction: column;
+    }
+    .screen .photo { flex: 1.1; }
+    .screen .panel { flex: 1; background: #fff; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .layer-row {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface); border-radius: 10px; padding: 8px 10px;
+    }
+    .layer-row .thumb { width: 20px; height: 20px; border-radius: 6px; flex: none; }
+    .layer-row span { font-size: 11px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; }
+    .layer-row .eye { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex: none; }
+    .layer-row.off .eye { background: var(--line); }
+    .layer-row.off span { color: var(--muted); }
+    .screen .toolbar {
+      background: #fff; border-top: 1px solid var(--line);
+      display: flex; justify-content: space-around; padding: 10px 8px 14px;
+    }
+    .toolbar i { width: 22px; height: 22px; border-radius: 7px; background: var(--surface); }
+    .toolbar i.active { background: var(--blue); box-shadow: 0 3px 8px rgba(9, 116, 255, 0.4); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 64px 0; }
+    @media (min-width: 880px) { section { padding: 84px 0; } }
+    .kicker {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--blue);
+    }
+    h2 {
+      font-size: clamp(28px, 4.6vw, 40px);
+      letter-spacing: -0.022em; line-height: 1.12; margin-top: 8px;
+    }
+    .section-lede { margin-top: 14px; color: var(--muted); font-size: 17px; max-width: 42em; }
+
+    /* ---------- Before / After ---------- */
+    .ba-section { padding-top: 12px; }
+    .ba {
+      --pos: 50%;
+      margin-top: 36px; position: relative;
+      aspect-ratio: 16 / 10; border-radius: var(--r-l); overflow: hidden;
+      box-shadow: var(--shadow-deep);
+      touch-action: none;
+    }
+    @media (max-width: 560px) { .ba { aspect-ratio: 4 / 5; } }
+    .ba-img { position: absolute; inset: 0; }
+    .ba-img.before { filter: saturate(0.45) contrast(0.84) brightness(1.07); }
+    .ba-img.after { clip-path: inset(0 0 0 var(--pos)); }
+    .ba-tag {
+      position: absolute; top: 14px; z-index: 2;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fff; background: rgba(14, 23, 38, 0.45);
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+      padding: 5px 10px; border-radius: 999px;
+    }
+    .ba-tag.before { left: 14px; }
+    .ba-tag.after { right: 14px; }
+    .ba-handle {
+      position: absolute; top: 0; bottom: 0; left: var(--pos); z-index: 2;
+      width: 2px; margin-left: -1px; background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+      pointer-events: none;
+    }
+    .ba-handle::after {
+      content: "◂ ▸"; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #fff; color: var(--blue);
+      font-size: 13px; letter-spacing: -1px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 18px rgba(14, 23, 38, 0.3);
+    }
+    .ba-range {
+      position: absolute; inset: 0; z-index: 3;
+      width: 100%; height: 100%;
+      opacity: 0; cursor: ew-resize;
+      -webkit-appearance: none; appearance: none;
+    }
+    .ba-caption { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
+
+    /* ---------- Positioning band ---------- */
+    .band {
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(90% 140% at 85% -20%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 55%),
+        linear-gradient(135deg, #0A6BEB, #0974FF 55%, #3E92FF);
+      border-radius: var(--r-l);
+      color: #fff; padding: 40px 28px;
+      box-shadow: 0 20px 50px rgba(9, 116, 255, 0.28);
+    }
+    .band::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); pointer-events: none; }
+    .band h2 { color: #fff; margin-top: 0; }
+    .band p { margin-top: 14px; font-size: 17px; color: rgba(255, 255, 255, 0.94); max-width: 46em; position: relative; }
+    @media (min-width: 720px) { .band { padding: 52px 52px; } }
+
+    /* ---------- Feature cards ---------- */
+    .cards { margin-top: 36px; display: grid; gap: 16px; }
+    @media (min-width: 720px) { .cards { grid-template-columns: 1fr 1fr; gap: 20px; } }
+    .card {
+      background: var(--surface); border-radius: 20px; padding: 30px 26px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+    .card .icon {
+      width: 46px; height: 46px; border-radius: 14px;
+      background: linear-gradient(180deg, #FFFFFF, #F3F8FF);
+      border: 1px solid #DCE9FB;
+      box-shadow: 0 4px 12px rgba(9, 116, 255, 0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .card .icon svg { width: 22px; height: 22px; }
+    .card h3 { font-size: 20px; letter-spacing: -0.01em; }
+    .card p { margin-top: 8px; color: var(--muted); font-size: 15px; }
+
+    /* Tools chips */
+    .tools { margin-top: 32px; }
+    .tools h3 { font-size: 17px; }
+    .tools h3 span { color: var(--muted); font-weight: 400; }
+    .chips { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: 14px; font-weight: 500;
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 999px; padding: 7px 14px; color: var(--text);
+      transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .chip:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+    .chip.more { color: var(--blue); border-color: transparent; background: #EAF2FF; }
+
+    /* ---------- Gallery ---------- */
+    #gallery { background: linear-gradient(180deg, #FFFFFF 0%, #F6F8FB 18%, #F6F8FB 82%, #FFFFFF 100%); }
+    .shots {
+      margin-top: 36px;
+      display: grid; grid-auto-flow: column; grid-auto-columns: 72%;
+      gap: 18px; overflow-x: auto; padding: 8px 4px 16px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .shots::-webkit-scrollbar { display: none; }
+    @media (min-width: 720px) {
+      .shots { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; }
+    }
+    .shot { scroll-snap-align: start; }
+    .shot-frame {
+      aspect-ratio: 9 / 19.5;
+      border-radius: var(--r-l);
+      overflow: hidden; position: relative;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .shot-frame:hover { transform: translateY(-4px) scale(1.01); box-shadow: var(--shadow-deep); }
+    .shot-frame::before {
+      /* dynamic island hint */
+      content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 34%; height: 10px; border-radius: 999px;
+      background: rgba(14, 23, 38, 0.12); z-index: 1;
+    }
+    .shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .shot-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px; text-align: center;
+      background: linear-gradient(180deg, #F4F7FB 0%, #EDF1F7 100%);
+    }
+    .shot-placeholder .ph-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: #fff; border: 1px dashed #C9D6E6;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue); font-size: 18px; font-weight: 600;
+    }
+    .shot-placeholder p { font-size: 13px; color: var(--muted); max-width: 16em; }
+    .shot figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); text-align: center; }
+
+    /* ---------- Beta form ---------- */
+    .beta-card {
+      position: relative; overflow: hidden;
+      background: var(--surface); border-radius: var(--r-l);
+      padding: 40px 24px;
+    }
+    .beta-card::before {
+      content: ""; position: absolute; inset: -60% -30% 55% 40%;
+      background: radial-gradient(50% 60% at 60% 50%, rgba(9, 116, 255, 0.09), rgba(9, 116, 255, 0));
+      pointer-events: none;
+    }
+    @media (min-width: 720px) { .beta-card { padding: 56px; } }
+    .beta-card h2 { margin-top: 8px; }
+    form.signup { margin-top: 28px; max-width: 560px; position: relative; }
+    .field-row { display: flex; flex-direction: column; gap: 12px; }
+    @media (min-width: 560px) { .field-row { flex-direction: row; } }
+    .field-row input[type="email"] {
+      flex: 1; min-width: 0;
+      font-family: inherit; font-size: 17px;
+      padding: 13px 16px;
+      border: 1px solid var(--line); border-radius: 14px;
+      background: #fff; color: var(--text);
+      box-shadow: 0 2px 8px rgba(14, 23, 38, 0.04) inset;
+    }
+    .field-row input[type="email"]:focus {
+      outline: 2px solid var(--blue); outline-offset: 0; border-color: var(--blue);
+    }
+    .consent { margin-top: 16px; display: flex; gap: 10px; align-items: flex-start; }
+    .consent input[type="checkbox"] {
+      width: 20px; height: 20px; margin-top: 2px; flex: none;
+      accent-color: var(--blue);
+    }
+    .consent label { font-size: 14px; color: var(--text); }
+    .consent a { color: var(--blue); }
+    .fine {
+      margin-top: 16px; font-size: 13px; color: var(--muted); max-width: 40em;
+    }
+    .fine a { color: var(--muted); }
+
+    /* ---------- Footer ---------- */
+    footer.site {
+      border-top: 1px solid var(--line);
+      padding: 32px 0 44px;
+      font-size: 14px; color: var(--muted);
+    }
+    .foot-row { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    footer.site a { color: var(--muted); text-decoration: none; }
+    footer.site a:hover { color: var(--text); }
+    .no-track { margin-top: 14px; font-size: 13px; }
+
+    /* ---------- Scroll-in motion (progressive, reduced-motion aware) ---------- */
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        .card, .shot, .band, .ba, .tools {
+          animation: rise 0.7s ease both;
+          animation-timeline: view();
+          animation-range: entry 0% entry 55%;
+        }
+      }
+    }
+    @keyframes rise {
+      from { opacity: 0.15; transform: translateY(26px); }
+      to { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#beta">Skip to beta signup</a>
+
+  <header class="site">
+    <div class="wrap site-row">
+      <a class="wordmark" href="#top">
+        <span class="dot" aria-hidden="true"></span>
+        True&nbsp;Color
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="#features">Features</a>
+        <a href="#gallery">Screenshots</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <a class="btn small" href="#beta">Join the beta</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Make the photo look<br><span class="accent">the way it felt.</span></h1>
+          <p class="lede">
+            True Color is a layered photo editor for iPhone: 26 adjustments, masks,
+            and your own LUTs. No AI deciding for you, and every change stays editable.
+          </p>
+          <div class="hero-cta">
+            <a class="btn" href="#beta">Join the TestFlight beta</a>
+            <a class="ghost" href="#features">See what’s inside ↓</a>
+          </div>
+          <div class="pills" role="list">
+            <span class="pill" role="listitem"><strong>iOS 26+</strong></span>
+            <span class="pill" role="listitem">Free during the <strong>beta</strong></span>
+            <span class="pill" role="listitem">Every edit <strong>undoable</strong></span>
+          </div>
+        </div>
+
+        <div class="phone" aria-hidden="true">
+          <div class="screen">
+            <div class="photo photo-art"></div>
+            <div class="panel">
+              <div class="layer-row">
+                <span class="thumb" style="background:linear-gradient(135deg,#222,#eee)"></span>
+                <span>Curves</span><span class="eye"></span>
+              </div>
+              <div class="layer-row">
+                <span class="thumb" style="background:linear-gradient(135deg,#F5A623,#00C74C,#0974FF)"></span>
+                <span>Selective Color</span><span class="eye"></span>
+              </div>
+              <div class="layer-row off">
+                <span class="thumb" style="background:linear-gradient(135deg,#E8B08A,#7A5CC4)"></span>
+                <span>Split Toning</span><span class="eye"></span>
+              </div>
+              <div class="layer-row">
+                <span class="thumb" style="background:linear-gradient(135deg,#FFE3C2,#C46A4A)"></span>
+                <span>LUT · Look “Film 01”</span><span class="eye"></span>
+              </div>
+            </div>
+            <div class="toolbar">
+              <i class="active"></i><i></i><i></i><i></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BEFORE / AFTER ============ -->
+    <section class="ba-section" aria-label="Before and after">
+      <div class="wrap">
+        <p class="kicker">See it, not read it</p>
+        <h2>Same photo. Your call.</h2>
+        <p class="section-lede">
+          A flat capture on the left, a few layers of care on the right.
+          Drag the handle — in True Color, every step of that edit stays
+          editable, not baked in.
+        </p>
+
+        <div class="ba" id="ba">
+          <div class="ba-img photo-art before" aria-hidden="true"></div>
+          <div class="ba-img photo-art after" aria-hidden="true"></div>
+          <span class="ba-tag before">Before</span>
+          <span class="ba-tag after">After</span>
+          <div class="ba-handle" aria-hidden="true"></div>
+          <input class="ba-range" type="range" min="0" max="100" value="50"
+                 aria-label="Reveal the edited version">
+        </div>
+        <p class="ba-caption">Stylized illustration — real screenshots land with the beta.</p>
+      </div>
+    </section>
+
+    <!-- ============ POSITIONING ============ -->
+    <section aria-label="Positioning">
+      <div class="wrap">
+        <div class="band">
+          <h2>Easy to start. Hard to outgrow.</h2>
+          <p>
+            If Curves, Channel Mixer, and Selective Color are your daily tools, they’re
+            all here, arranged in a proper layer stack. Just starting out? Pick a filter,
+            move one slider, see what happens. You can’t break anything, every step is
+            undoable, and the deeper tools will wait quietly until you’re curious.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section id="features">
+      <div class="wrap">
+        <p class="kicker">What’s inside</p>
+        <h2>Layers, masks, Looks, and speed</h2>
+        <p class="section-lede">
+          Four ideas hold True Color together. Each one is precise enough for a working
+          pro, and plain enough to learn by moving one slider and watching the photo.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0974FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/>
+              </svg>
+            </div>
+            <h3>Build your edit in layers</h3>
+            <p>
+              Pick from 26 adjustment types, from Exposure and Levels to Curves, Split
+              Toning, and Channel Mixer. Each one lives on its own layer, so you can
+              reorder it, soften it, or switch it off next week. Nothing is baked in
+              until you export.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0974FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/>
+              </svg>
+            </div>
+            <h3>Touch only what needs touching</h3>
+            <p>
+              Paint a mask to keep an adjustment exactly where you want it, or use
+              Blend If to limit it to just the shadows or just the highlights. Brighten
+              a face without washing out the sky behind it. If you’ve ever dodged and
+              burned a print, your hands already know this.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0974FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 12h18M12 3v18"/>
+              </svg>
+            </div>
+            <h3>Find your look, then keep it</h3>
+            <p>
+              Start with the built-in filters, or bring your own LUTs (.cube and .3dl).
+              When an edit finally feels like you, save the whole stack as a Look and
+              give the next photo the same treatment in one tap.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0974FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/>
+              </svg>
+            </div>
+            <h3>See the real photo as you drag</h3>
+            <p>
+              No postage-stamp preview, no wait and see. Move a slider and the
+              full-resolution photo answers instantly, so your eye stays on the
+              picture and you can trust exactly what you see.
+            </p>
+          </article>
+        </div>
+
+        <div class="tools">
+          <h3>26 adjustment types. <span>Here are twelve:</span></h3>
+          <div class="chips">
+            <span class="chip">Levels</span>
+            <span class="chip">Curves</span>
+            <span class="chip">Color Balance</span>
+            <span class="chip">Selective Color</span>
+            <span class="chip">Split Toning</span>
+            <span class="chip">Shadows &amp; Highlights</span>
+            <span class="chip">Dehaze</span>
+            <span class="chip">Channel Mixer</span>
+            <span class="chip">Hue/Saturation</span>
+            <span class="chip">Black &amp; White</span>
+            <span class="chip">Gradient Map</span>
+            <span class="chip">Exposure</span>
+            <span class="chip more">+ 14 more</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section id="gallery">
+      <div class="wrap">
+        <p class="kicker">Screenshots</p>
+        <h2>Take a look around</h2>
+
+        <!--
+          Placeholders below. To use real screenshots: drop files into images/
+          and replace each .shot-placeholder div with e.g.
+          <img src="images/01-editor.png" alt="True Color editor with the layer stack open" width="1206" height="2622">
+          (keep the <figure> / <figcaption> structure).
+        -->
+        <div class="shots">
+          <figure class="shot">
+            <div class="shot-frame">
+              <div class="shot-placeholder">
+                <span class="ph-icon" aria-hidden="true">1</span>
+                <p>Screenshot placeholder: the editor with the layer stack open</p>
+              </div>
+            </div>
+            <figcaption>The layer stack: your whole edit, in order, always reversible</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="shot-frame">
+              <div class="shot-placeholder">
+                <span class="ph-icon" aria-hidden="true">2</span>
+                <p>Screenshot placeholder: Curves panel with a per-channel curve</p>
+              </div>
+            </div>
+            <figcaption>Curves, with the real photo answering every move</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="shot-frame">
+              <div class="shot-placeholder">
+                <span class="ph-icon" aria-hidden="true">3</span>
+                <p>Screenshot placeholder: Selective Color panel</p>
+              </div>
+            </div>
+            <figcaption>Selective Color: shift the reds in the jacket, keep the reds in the skin</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="shot-frame">
+              <div class="shot-placeholder">
+                <span class="ph-icon" aria-hidden="true">4</span>
+                <p>Screenshot placeholder: Filters gallery and LUT import</p>
+              </div>
+            </div>
+            <figcaption>Built-in filters alongside your own LUTs (.cube and .3dl)</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BETA SIGNUP ============ -->
+    <section id="beta">
+      <div class="wrap">
+        <div class="beta-card">
+          <p class="kicker">Public beta</p>
+          <h2>Join the TestFlight beta</h2>
+          <p class="section-lede">
+            True Color is nearly ready. Leave your email and you’ll get exactly two
+            kinds of mail: the occasional bit of news, and your TestFlight invitation
+            when the beta opens. The beta is free, and you can unsubscribe anytime.
+          </p>
+
+          <!--
+            Buttondown embed form (account: sandbox).
+            Before the first send: confirm double opt-in is ON and set a physical
+            mailing address in Buttondown — see README.md “Email-розсилка (Buttondown)”.
+          -->
+          <form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/sandbox" method="post">
+            <div class="field-row">
+              <label class="sr-only" for="bd-email">Email address</label>
+              <input type="email" name="email" id="bd-email" placeholder="you@example.com"
+                     autocomplete="email" inputmode="email" required>
+              <button type="submit" class="btn">Join the beta</button>
+            </div>
+            <input type="hidden" name="tag" value="testflight-beta">
+
+            <div class="consent">
+              <input type="checkbox" id="bd-consent" required>
+              <label for="bd-consent">
+                I agree to receive news about True Color and an invitation to the
+                TestFlight beta. Details in the <a href="privacy.html">Privacy&nbsp;Policy</a>.
+              </label>
+            </div>
+
+            <p class="fine">
+              Double opt-in: we’ll first send you a confirmation email — you’re only
+              subscribed once you click it. Every email includes a one-click unsubscribe.
+              To withdraw consent or delete your data at any time, write to
+              <a href="mailto:connect@gettruecolor.com">connect@gettruecolor.com</a>.
+              We store your email address and nothing else.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-row">
+        <span>© 2026 True Color</span>
+        <div class="foot-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="mailto:connect@gettruecolor.com">Contact</a>
+        </div>
+      </div>
+      <p class="no-track">This site sets no cookies and runs no trackers.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Progressive enhancement for the before/after slider.
+    // Without JS the block still shows a clean 50/50 split.
+    (function () {
+      var ba = document.getElementById('ba');
+      if (!ba) return;
+      var range = ba.querySelector('.ba-range');
+      range.addEventListener('input', function () {
+        ba.style.setProperty('--pos', range.value + '%');
+      });
+    })();
+  </script>
+</body>
+</html>
