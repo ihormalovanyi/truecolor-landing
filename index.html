@@ -551,7 +551,7 @@
         <p class="kicker">Your turn</p>
         <h2>Grade it yourself</h2>
         <p class="section-lede">
-          Three layers from the editor, wired to this photo. Drag the sliders,
+          Six layers from the editor, wired to this photo. Drag the sliders,
           tap the eyes to switch a layer off, or apply a whole Look in one tap —
           exactly how it feels in True Color.
         </p>
@@ -580,6 +580,16 @@
               <input class="play-slider" type="range" min="-100" max="100" value="0" aria-label="Exposure">
             </div>
 
+            <div class="play-layer" data-layer="contrast">
+              <div class="play-layer-top">
+                <span class="play-thumb" style="background:linear-gradient(90deg,#0E1726 0%,#0E1726 48%,#F0F3F7 52%,#F0F3F7 100%)" aria-hidden="true"></span>
+                <span class="play-name">Contrast</span>
+                <span class="play-val" data-val>100%</span>
+                <button class="play-eye" type="button" aria-label="Toggle Contrast layer" aria-pressed="true"><span class="dot"></span></button>
+              </div>
+              <input class="play-slider" type="range" min="50" max="180" value="100" aria-label="Contrast">
+            </div>
+
             <div class="play-layer" data-layer="hue">
               <div class="play-layer-top">
                 <span class="play-thumb" style="background:conic-gradient(#F5473B,#F5A623,#00C74C,#0974FF,#B86AD9,#F5473B)" aria-hidden="true"></span>
@@ -598,6 +608,26 @@
                 <button class="play-eye" type="button" aria-label="Toggle Saturation layer" aria-pressed="true"><span class="dot"></span></button>
               </div>
               <input class="play-slider" type="range" min="0" max="200" value="100" aria-label="Saturation">
+            </div>
+
+            <div class="play-layer" data-layer="bw">
+              <div class="play-layer-top">
+                <span class="play-thumb" style="background:linear-gradient(90deg,#0E1726,#8E8E93,#FFFFFF)" aria-hidden="true"></span>
+                <span class="play-name">Black &amp; White</span>
+                <span class="play-val" data-val>0%</span>
+                <button class="play-eye" type="button" aria-label="Toggle Black and White layer" aria-pressed="true"><span class="dot"></span></button>
+              </div>
+              <input class="play-slider" type="range" min="0" max="100" value="0" aria-label="Black and White">
+            </div>
+
+            <div class="play-layer" data-layer="dehaze">
+              <div class="play-layer-top">
+                <span class="play-thumb" style="background:linear-gradient(90deg,#C7D2E0,#7FA8DC,#0974FF)" aria-hidden="true"></span>
+                <span class="play-name">Dehaze</span>
+                <span class="play-val" data-val>0</span>
+                <button class="play-eye" type="button" aria-label="Toggle Dehaze layer" aria-pressed="true"><span class="dot"></span></button>
+              </div>
+              <input class="play-slider" type="range" min="0" max="100" value="0" aria-label="Dehaze">
             </div>
 
             <div class="play-looks">
@@ -868,20 +898,30 @@
       var canvas = document.getElementById('play-canvas');
       if (!canvas) return;
 
+      // Layer order here is the order the filters stack, top row first.
       var layers = {
         exposure:   { on: true, value: 0,   fmt: function (v) { return (v > 0 ? '+' : '') + (v / 100).toFixed(2); },
                       css: function (v) { return 'brightness(' + (1 + v / 250).toFixed(3) + ')'; } },
+        contrast:   { on: true, value: 100, fmt: function (v) { return v + '%'; },
+                      css: function (v) { return 'contrast(' + (v / 100).toFixed(2) + ')'; } },
         hue:        { on: true, value: 0,   fmt: function (v) { return (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v) + '°'; },
                       css: function (v) { return 'hue-rotate(' + v + 'deg)'; } },
         saturation: { on: true, value: 100, fmt: function (v) { return v + '%'; },
-                      css: function (v) { return 'saturate(' + (v / 100).toFixed(2) + ')'; } }
+                      css: function (v) { return 'saturate(' + (v / 100).toFixed(2) + ')'; } },
+        bw:         { on: true, value: 0,   fmt: function (v) { return v + '%'; },
+                      css: function (v) { return 'grayscale(' + (v / 100).toFixed(2) + ')'; } },
+        // Dehaze reads as "cut through the haze": more bite, a touch more colour.
+        dehaze:     { on: true, value: 0,   fmt: function (v) { return String(v); },
+                      css: function (v) {
+                        return 'contrast(' + (1 + v / 300).toFixed(3) + ') saturate(' + (1 + v / 260).toFixed(3) + ')';
+                      } }
       };
       var looks = {
-        golden: { exposure: 12,  hue: -16, saturation: 128 },
-        cold:   { exposure: 4,   hue: 14,  saturation: 74 },
-        noir:   { exposure: 8,   hue: 0,   saturation: 0 }
+        golden: { exposure: 12, contrast: 112, hue: -16, saturation: 128, bw: 0,   dehaze: 30 },
+        cold:   { exposure: 4,  contrast: 108, hue: 14,  saturation: 74,  bw: 0,   dehaze: 15 },
+        noir:   { exposure: 10, contrast: 132, hue: 0,   saturation: 100, bw: 100, dehaze: 35 }
       };
-      var defaults = { exposure: 0, hue: 0, saturation: 100 };
+      var defaults = { exposure: 0, contrast: 100, hue: 0, saturation: 100, bw: 0, dehaze: 0 };
       var chips = document.querySelectorAll('.look-chip');
 
       function render() {
