@@ -234,6 +234,72 @@
     }
     .ba-caption { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
 
+    /* ---------- Playground (mini editor) ---------- */
+    .play-grid { margin-top: 36px; display: grid; gap: 20px; align-items: stretch; }
+    @media (min-width: 820px) { .play-grid { grid-template-columns: 1.05fr 0.95fr; } }
+    .play-photo {
+      border-radius: var(--r-l); overflow: hidden; position: relative;
+      aspect-ratio: 4 / 5; box-shadow: var(--shadow-deep);
+      min-height: 320px;
+    }
+    @media (min-width: 820px) { .play-photo { aspect-ratio: auto; } }
+    .play-photo .photo-art { position: absolute; inset: 0; transition: filter 0.08s linear; }
+    .play-panel {
+      background: #fff; border: 1px solid var(--line); border-radius: 20px;
+      padding: 20px; display: flex; flex-direction: column; gap: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+    .play-layer {
+      background: var(--surface); border-radius: 14px; padding: 12px 14px;
+    }
+    .play-layer.off { opacity: 0.55; }
+    .play-layer-top { display: flex; align-items: center; gap: 10px; }
+    .play-thumb { width: 22px; height: 22px; border-radius: 7px; flex: none; }
+    .play-name { font-size: 14px; font-weight: 600; }
+    .play-val { margin-left: auto; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .play-eye {
+      width: 26px; height: 26px; border-radius: 50%; border: 0; cursor: pointer;
+      background: #fff; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 1px 4px rgba(14, 23, 38, 0.12); flex: none;
+    }
+    .play-eye .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--success); transition: background 0.15s ease; }
+    .play-layer.off .play-eye .dot { background: var(--line); }
+    .play-slider {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 4px; border-radius: 999px;
+      background: var(--line); outline: none; margin-top: 12px;
+      cursor: pointer;
+    }
+    .play-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #fff; border: 0.5px solid rgba(14, 23, 38, 0.08);
+      box-shadow: 0 3px 8px rgba(14, 23, 38, 0.25);
+      cursor: grab;
+    }
+    .play-slider::-moz-range-thumb {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #fff; border: 0.5px solid rgba(14, 23, 38, 0.08);
+      box-shadow: 0 3px 8px rgba(14, 23, 38, 0.25);
+      cursor: grab;
+    }
+    .play-looks { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+    .play-looks-label { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .look-chip {
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      background: var(--surface); border: 1px solid transparent;
+      border-radius: 999px; padding: 6px 12px; color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .look-chip:hover { border-color: var(--blue); }
+    .look-chip.active { background: var(--blue); color: #fff; box-shadow: 0 4px 10px rgba(9, 116, 255, 0.3); }
+    .play-reset {
+      margin-left: auto; font-size: 13px; color: var(--blue);
+      background: none; border: 0; cursor: pointer; padding: 6px 4px;
+    }
+    .play-reset:hover { text-decoration: underline; }
+    .play-caption { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
+
     /* ---------- Positioning band ---------- */
     .band {
       position: relative; overflow: hidden;
@@ -488,6 +554,69 @@
       </div>
     </section>
 
+    <!-- ============ PLAYGROUND ============ -->
+    <section id="play" aria-label="Interactive demo">
+      <div class="wrap">
+        <p class="kicker">Your turn</p>
+        <h2>Grade it yourself</h2>
+        <p class="section-lede">
+          Three layers from the editor, wired to this photo. Drag the sliders,
+          tap the eyes to switch a layer off, or apply a whole Look in one tap —
+          exactly how it feels in True Color.
+        </p>
+
+        <div class="play-grid">
+          <div class="play-photo">
+            <div class="photo-art" id="play-canvas"></div>
+          </div>
+
+          <div class="play-panel">
+            <div class="play-layer" data-layer="exposure">
+              <div class="play-layer-top">
+                <span class="play-thumb" style="background:linear-gradient(135deg,#222,#eee)" aria-hidden="true"></span>
+                <span class="play-name">Exposure</span>
+                <span class="play-val" data-val>0.00</span>
+                <button class="play-eye" type="button" aria-label="Toggle Exposure layer" aria-pressed="true"><span class="dot"></span></button>
+              </div>
+              <input class="play-slider" type="range" min="-100" max="100" value="0" aria-label="Exposure">
+            </div>
+
+            <div class="play-layer" data-layer="hue">
+              <div class="play-layer-top">
+                <span class="play-thumb" style="background:conic-gradient(#F5473B,#F5A623,#00C74C,#0974FF,#B86AD9,#F5473B)" aria-hidden="true"></span>
+                <span class="play-name">Hue</span>
+                <span class="play-val" data-val>0°</span>
+                <button class="play-eye" type="button" aria-label="Toggle Hue layer" aria-pressed="true"><span class="dot"></span></button>
+              </div>
+              <input class="play-slider" type="range" min="-60" max="60" value="0" aria-label="Hue shift">
+            </div>
+
+            <div class="play-layer" data-layer="saturation">
+              <div class="play-layer-top">
+                <span class="play-thumb" style="background:linear-gradient(90deg,#8E8E93,#F5473B)" aria-hidden="true"></span>
+                <span class="play-name">Saturation</span>
+                <span class="play-val" data-val>100%</span>
+                <button class="play-eye" type="button" aria-label="Toggle Saturation layer" aria-pressed="true"><span class="dot"></span></button>
+              </div>
+              <input class="play-slider" type="range" min="0" max="200" value="100" aria-label="Saturation">
+            </div>
+
+            <div class="play-looks">
+              <span class="play-looks-label">Looks:</span>
+              <button class="look-chip" type="button" data-look="golden">Golden Hour</button>
+              <button class="look-chip" type="button" data-look="cold">Cold Film</button>
+              <button class="look-chip" type="button" data-look="noir">Noir</button>
+              <button class="play-reset" type="button">Reset</button>
+            </div>
+          </div>
+        </div>
+        <p class="play-caption">
+          A taste, not the tool: the app itself goes to 26 adjustment types, masks,
+          Curves, and your own LUTs.
+        </p>
+      </div>
+    </section>
+
     <!-- ============ POSITIONING ============ -->
     <section aria-label="Positioning">
       <div class="wrap">
@@ -717,6 +846,96 @@
       range.addEventListener('input', function () {
         ba.style.setProperty('--pos', range.value + '%');
       });
+    })();
+
+    // "Grade it yourself" playground: three layers driving CSS filters.
+    // Without JS the panel is inert but the section still reads fine.
+    (function () {
+      var canvas = document.getElementById('play-canvas');
+      if (!canvas) return;
+
+      var layers = {
+        exposure:   { on: true, value: 0,   fmt: function (v) { return (v > 0 ? '+' : '') + (v / 100).toFixed(2); },
+                      css: function (v) { return 'brightness(' + (1 + v / 250).toFixed(3) + ')'; } },
+        hue:        { on: true, value: 0,   fmt: function (v) { return (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v) + '°'; },
+                      css: function (v) { return 'hue-rotate(' + v + 'deg)'; } },
+        saturation: { on: true, value: 100, fmt: function (v) { return v + '%'; },
+                      css: function (v) { return 'saturate(' + (v / 100).toFixed(2) + ')'; } }
+      };
+      var looks = {
+        golden: { exposure: 12,  hue: -16, saturation: 128 },
+        cold:   { exposure: 4,   hue: 14,  saturation: 74 },
+        noir:   { exposure: 8,   hue: 0,   saturation: 0 }
+      };
+      var defaults = { exposure: 0, hue: 0, saturation: 100 };
+      var chips = document.querySelectorAll('.look-chip');
+
+      function render() {
+        var parts = [];
+        for (var k in layers) if (layers[k].on) parts.push(layers[k].css(layers[k].value));
+        canvas.style.filter = parts.join(' ');
+      }
+      function fill(slider) {
+        var p = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+        slider.style.background =
+          'linear-gradient(to right, var(--blue) ' + p + '%, var(--line) ' + p + '%)';
+      }
+      function clearChips() {
+        chips.forEach(function (c) { c.classList.remove('active'); });
+      }
+
+      document.querySelectorAll('.play-layer').forEach(function (row) {
+        var key = row.dataset.layer;
+        var layer = layers[key];
+        var slider = row.querySelector('.play-slider');
+        var val = row.querySelector('[data-val]');
+        var eye = row.querySelector('.play-eye');
+        layer.sync = function () {
+          slider.value = layer.value;
+          val.textContent = layer.fmt(layer.value);
+          row.classList.toggle('off', !layer.on);
+          eye.setAttribute('aria-pressed', String(layer.on));
+          fill(slider);
+        };
+        slider.addEventListener('input', function () {
+          layer.value = Number(slider.value);
+          layer.on = true;
+          clearChips();
+          layer.sync(); render();
+        });
+        eye.addEventListener('click', function () {
+          layer.on = !layer.on;
+          clearChips();
+          layer.sync(); render();
+        });
+        layer.sync();
+      });
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var preset = looks[chip.dataset.look];
+          for (var k in layers) {
+            layers[k].value = preset[k];
+            layers[k].on = true;
+            layers[k].sync();
+          }
+          clearChips();
+          chip.classList.add('active');
+          render();
+        });
+      });
+
+      document.querySelector('.play-reset').addEventListener('click', function () {
+        for (var k in layers) {
+          layers[k].value = defaults[k];
+          layers[k].on = true;
+          layers[k].sync();
+        }
+        clearChips();
+        render();
+      });
+
+      render();
     })();
   </script>
 </body>
