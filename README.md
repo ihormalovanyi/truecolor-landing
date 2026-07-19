@@ -154,11 +154,11 @@ App Store Connect → ваша апка → вкладка **TestFlight** → с
 
 > Публічне посилання за задумом Apple є публічним: будь-хто з URL може приєднатись. Це нормально для відкритої бети.
 
-### 2. Вставити його в `beta.html`
+### 2. ✅ Вставлено в `beta.html`
 
-У файлі `beta.html` замініть `https://testflight.apple.com/join/REPLACE_ME` на своє посилання. Сторінка має `noindex`, тож у пошук не потрапить.
+Поточне посилання: `https://testflight.apple.com/join/7uXSE9jy` (бета «True Color: Layer Photo Editor», перевірено — відкрита). Сторінка має `noindex`, тож у пошук не потрапить.
 
-### 3. Увімкнути редірект після підтвердження
+### 3. Увімкнути редірект після підтвердження ← ЛИШИЛОСЯ
 
 Buttondown → **Settings → Subscribing** → поле редіректу **після підтвердження підписки** (redirect after confirmation) → `https://gettruecolor.com/beta.html`.
 
