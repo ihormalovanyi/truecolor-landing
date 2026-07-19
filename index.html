@@ -123,21 +123,21 @@
     /* Decorative phone mock */
     .phone {
       width: min(300px, 78vw); margin: 0 auto;
-      aspect-ratio: 9 / 19.5;
       background: #FAFBFD;
       border: 1px solid var(--line);
       border-radius: 44px;
       box-shadow: var(--shadow-deep), 0 2px 0 rgba(255, 255, 255, 0.9) inset;
-      padding: 12px; display: flex;
+      padding: 12px;
       transform: rotate(1.4deg);
     }
+    /* Matches the recording exactly (720x1564), so nothing gets cropped. */
     .screen {
-      flex: 1; border-radius: 34px; overflow: hidden;
+      aspect-ratio: 720 / 1564;
+      border-radius: 34px; overflow: hidden;
       background: var(--surface);
-      display: flex; flex-direction: column;
     }
     .screen .hero-video, .screen .hero-poster {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+      width: 100%; height: 100%; object-fit: contain; display: block;
     }
     .screen .hero-poster { display: none; }
     @media (prefers-reduced-motion: reduce) {

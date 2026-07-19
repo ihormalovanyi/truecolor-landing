@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're in — True Color beta</title>
+  <meta name="description" content="Your TestFlight invitation for the True Color beta.">
+  <meta name="theme-color" content="#0974FF">
+  <!-- Reached only after confirming the subscription; keep it out of search results. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234DA0FF'/%3E%3Cstop offset='1' stop-color='%230974FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --blue: #0974FF;
+      --bg: #FFFFFF;
+      --surface: #F0F3F7;
+      --success: #00C74C;
+      --text: #0E1726;
+      --muted: #5B6675;
+      --line: #E3E9F1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 620px; margin: 0 auto; padding: 0 20px; width: 100%; }
+    header.site { border-bottom: 1px solid var(--line); }
+    .site-row { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .wordmark {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--text); text-decoration: none;
+    }
+    .wordmark .dot {
+      width: 26px; height: 26px; border-radius: 9px;
+      background: linear-gradient(135deg, #4DA0FF, var(--blue) 60%, #0553C4);
+      box-shadow: 0 4px 10px rgba(9, 116, 255, 0.35); flex: none;
+    }
+    .back { font-size: 15px; color: var(--blue); text-decoration: none; }
+
+    main { flex: 1; padding: 56px 0 72px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0, 199, 76, 0.10); color: #068a38;
+      font-size: 14px; font-weight: 600;
+      padding: 6px 14px; border-radius: 999px;
+    }
+    .badge .tick {
+      width: 16px; height: 16px; border-radius: 50%; background: var(--success);
+      color: #fff; font-size: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(30px, 6vw, 44px); letter-spacing: -0.025em; line-height: 1.08;
+    }
+    .lede { margin-top: 16px; font-size: 18px; color: var(--muted); }
+
+    .cta-card {
+      margin-top: 32px; background: var(--surface);
+      border-radius: 22px; padding: 28px 24px; text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(180deg, #2E8BFF, var(--blue)); color: #fff;
+      font-size: 18px; font-weight: 600; padding: 15px 30px; border-radius: 14px;
+      text-decoration: none; box-shadow: 0 8px 22px rgba(9, 116, 255, 0.32);
+      transition: filter 0.15s ease, transform 0.12s ease;
+    }
+    .btn:hover { filter: brightness(1.06); }
+    .btn:active { transform: translateY(1px); }
+    .cta-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    h2 { font-size: 20px; margin: 40px 0 12px; letter-spacing: -0.01em; }
+    ol { margin-left: 20px; }
+    li { margin-top: 8px; }
+    li strong { font-weight: 600; }
+    p + p { margin-top: 12px; }
+    a { color: var(--blue); }
+    .fine { margin-top: 36px; font-size: 14px; color: var(--muted); }
+
+    footer.site {
+      border-top: 1px solid var(--line); padding: 24px 0 40px;
+      font-size: 14px; color: var(--muted);
+    }
+    footer.site a { color: var(--muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap site-row">
+      <a class="wordmark" href="index.html"><span class="dot" aria-hidden="true"></span>True&nbsp;Color</a>
+      <a class="back" href="index.html">← Back to the site</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <span class="badge"><span class="tick" aria-hidden="true">✓</span> Email confirmed</span>
+
+      <h1>You're in.</h1>
+      <p class="lede">
+        Thanks for confirming. Here's your way into the True Color beta —
+        the link below opens TestFlight, Apple's app for trying builds before release.
+      </p>
+
+      <div class="cta-card">
+        <!--
+          Replace the href with your TestFlight public link.
+          App Store Connect → your app → TestFlight → Public Link → Enable, then copy the URL
+          (it looks like https://testflight.apple.com/join/XXXXXXXX).
+        -->
+        <a class="btn" href="https://testflight.apple.com/join/REPLACE_ME">Open TestFlight</a>
+        <p class="cta-note">Needs an iPhone on iOS 26 or newer.</p>
+      </div>
+
+      <h2>What happens next</h2>
+      <ol>
+        <li>Tap the button on your <strong>iPhone</strong>. It opens the App Store page for TestFlight if you don't have it yet.</li>
+        <li>Install TestFlight, then tap the link again to accept the invitation.</li>
+        <li>Install True Color from inside TestFlight and start editing.</li>
+      </ol>
+
+      <h2>Found something odd?</h2>
+      <p>
+        That's the point of a beta. Shake your phone inside TestFlight to send feedback,
+        or just reply to any of our emails — a real person reads them.
+      </p>
+
+      <p class="fine">
+        You'll also get the occasional bit of news about True Color. Every email has a
+        one-click unsubscribe, and you can ask us to delete your address at any time at
+        <a href="mailto:connect@gettruecolor.com">connect@gettruecolor.com</a>.
+        See the <a href="privacy.html">Privacy Policy</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      © 2026 True Color · <a href="privacy.html">Privacy</a> ·
+      <a href="mailto:connect@gettruecolor.com">connect@gettruecolor.com</a>
+    </div>
+  </footer>
+</body>
+</html>
