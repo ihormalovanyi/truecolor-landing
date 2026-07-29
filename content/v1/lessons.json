@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "version": 1,
+  "lessons": [
+    {
+      "id": "darken-the-sky",
+      "title": "Darken the Sky",
+      "subtitle": "Curves under a gradient mask, the way a landscape is graded",
+      "minutes": 2,
+      "photo": "LessonSkyPhoto",
+      "photoExtension": "jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000001",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "Every change lives on its own [[layer]]. Tap + and pick [[curves|Curves]] to add one.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "curves"
+          }
+        },
+        {
+          "text": "Drag the middle of the line down. Everything darkens, sky and stone alike.",
+          "anchor": "adjust_chip",
+          "goal": {
+            "did": "adjusted",
+            "kind": "curves"
+          }
+        },
+        {
+          "text": "Tap [[mask|Mask]], add a [[gradient|Gradient]], then drag it down. Only the sky darkens.",
+          "anchor": "mask_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "added_mask",
+            "kind": "gradient"
+          }
+        },
+        {
+          "text": "That's the whole move: one [[layer]], one curve, one [[mask]]. Look at what you made.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "editor-tour",
+      "title": "Find Your Way Around",
+      "subtitle": "The stack, the bar and the menu, in one pass",
+      "minutes": 3,
+      "photo": "LessonSkyPhoto",
+      "photoExtension": "jpg",
+      "mode": "guided",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000101",
+          "name": "Exposure",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "exposure": {
+              "_0": {
+                "value": 0.5
+              },
+              "_1": {
+                "value": 0.5
+              },
+              "_2": {
+                "value": 0.5
+              }
+            }
+          }
+        },
+        {
+          "id": "A0000000-0000-4000-8000-000000000102",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "Your photo is never touched. Every edit is a [[layer]] on top, and comes off as easily.",
+          "focus": "photo"
+        },
+        {
+          "text": "Tap Layers to see the [[layer_stack|stack]]. This photo already has one adjustment in it.",
+          "anchor": "layers_button",
+          "goal": "opened_layers"
+        },
+        {
+          "text": "Tap a layer to select it. The bar along the bottom then shows what that layer can do.",
+          "anchor": "chip_bar",
+          "goal": "selected_layer"
+        },
+        {
+          "text": "Hide a [[layer]] to see the photo without it. Nothing is lost, it just stops applying.",
+          "focus": "photo",
+          "goal": "toggled_visibility"
+        },
+        {
+          "text": "The dots menu holds Crop, the histogram, and Hide Edits. Open it and look around.",
+          "anchor": "more_menu",
+          "goal": "opened_menu"
+        },
+        {
+          "text": "Hide Edits shows the untouched original. Turn it back on and your work returns.",
+          "focus": "photo",
+          "goal": "toggled_original"
+        },
+        {
+          "text": "Show the [[histogram|Histogram]], if you like reading light as a graph. Drag it anywhere.",
+          "anchor": "more_menu",
+          "goal": "toggled_histogram"
+        },
+        {
+          "text": "The two arrows in the top bar step back through your edits, and forward again.",
+          "focus": "photo",
+          "goal": "undid"
+        },
+        {
+          "text": "That is the whole editor: a stack, a bar for what you picked, and a menu. Go build.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    }
+  ]
+}
