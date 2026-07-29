@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy — True Color</title>
-  <meta name="description" content="Privacy policy for the True Color iOS app and website: what we collect (an email address, if you give it), why, and your rights.">
+  <meta name="description" content="Privacy policy for the True Color iOS app and website: your photos never leave your device; what we do collect, who processes it, how long we keep it, and your rights.">
   <meta name="theme-color" content="#0974FF">
   <link rel="icon" href="media/icon-32.png" sizes="32x32">
   <link rel="icon" href="media/icon-512.png" sizes="512x512">
@@ -84,18 +84,23 @@
 
       <div class="tldr">
         <strong>The short version:</strong> your photos stay on your device — we never
-        receive them. The app does measure how its features are used, and reports
-        crashes, so we can fix what breaks. This website sets no cookies and runs no
+        receive them. The app does measure how its features are used, and reports crashes
+        and errors, so we can fix what breaks. This website sets no cookies and runs no
         trackers at all. The only personal data we hold about you directly is your email
         address, and only if you join our mailing list yourself.
       </div>
 
       <h2>Who we are</h2>
       <p>
-        True Color is an independent iOS photo editor, built and run by a sole trader
-        established in Ukraine. We are the data controller for the personal data
-        described in this policy. For anything in it, contact us at
+        True Color is an independent iOS photo editor, built and run by Ihor Malovanyi,
+        a sole trader established in Ukraine. We are the data controller for the personal
+        data described in this policy. For anything in it — including a request to see,
+        correct or delete your data, or to receive our postal address — contact us at
         <a href="mailto:connect@gettruecolor.com">connect@gettruecolor.com</a>.
+      </p>
+      <p>
+        The terms you agree to when you use the app are separate, and live in our
+        <a href="terms.html">Terms of Service</a>.
       </p>
 
       <h2>The app</h2>
@@ -127,25 +132,77 @@
         at that moment, plus the device model and operating system version.
       </p>
 
-      <h3>Who processes app data</h3>
+      <h3>Error reports</h3>
       <p>
-        Analytics and crash reporting are handled by
-        <a href="https://firebase.google.com/support/privacy">Google Firebase</a>
-        (Firebase Analytics and Crashlytics) acting as our processor, with data stored in
-        the United States. The app also downloads its filter and LUT catalogue from our
-        content server, which is hosted by Google; like any web request, that reveals
-        your IP address to the host.
+        Separately from crash reports, the app reports handled errors — a photo that
+        failed to import, an export that could not be written, a model that failed to
+        load — so we can see failures that do not crash the app but do ruin your session.
+        These reports describe the operation that failed and the app and device version.
+      </p>
+
+      <h3>Who processes app data</h3>
+      <ul>
+        <li>
+          <strong>Analytics and crash reports:</strong>
+          <a href="https://firebase.google.com/support/privacy">Google Firebase</a>
+          (Firebase Analytics and Crashlytics), stored in the United States.
+        </li>
+        <li>
+          <strong>Error reports:</strong> <a href="https://sentry.io/privacy/">Sentry</a>,
+          stored in the United States.
+        </li>
+        <li>
+          <strong>Lessons, filters, LUTs and lesson photographs:</strong> the app
+          downloads these from <code>gettruecolor.com</code>, which is served by
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub&nbsp;Pages</a>.
+          Like any web request, that reveals your IP address to the host.
+        </li>
+        <li>
+          <strong>Machine-learning models:</strong> the depth and colourisation models are
+          downloaded on demand from Apple’s own content delivery network, under
+          <a href="https://www.apple.com/legal/privacy/">Apple’s privacy terms</a>.
+        </li>
+      </ul>
+      <p>
+        All of them act as our processors — they may use this data to provide the service
+        to us, and not for their own purposes. We keep no separate copy of any of it on
+        our own systems.
       </p>
       <p>
         As the app grows we may add or replace analytics, crash-reporting and measurement
         providers. When we do, we will update this page and the effective date below.
       </p>
 
-      <h3>Purchases, ads and accounts</h3>
+      <h3>Where the data goes, and what protects it</h3>
       <p>
-        The app shows you no advertising and has no user accounts. Paid features are
-        billed by Apple through the App Store; Apple handles the payment and we never see
-        your card details.
+        Firebase, Sentry, GitHub and Apple all store this data in the
+        <strong>United States</strong> — outside the EEA, the UK and Ukraine. Transfers
+        there are covered by the European Commission’s Standard Contractual Clauses,
+        which each of these providers includes in its data processing terms, and by the
+        EU–US Data Privacy Framework where the provider is certified under it. You can ask
+        us for details of the safeguards that apply to any specific provider.
+      </p>
+
+      <h3>How long we keep app data</h3>
+      <p>
+        Crash and error reports are kept for up to <strong>90 days</strong> and then
+        deleted by Firebase Crashlytics and Sentry. Event-level analytics data is kept by
+        Firebase for up to <strong>14 months</strong>. The aggregate counts we actually
+        read — how many people reached the editor this month — are kept indefinitely,
+        because at that point they describe the app rather than a device.
+      </p>
+
+      <h3>Purchases, ads, accounts and tracking</h3>
+      <p>
+        The app shows you no advertising and has no user accounts. It does not track you
+        across other apps or websites, does not ask for your device’s advertising
+        identifier, and does not build a profile about you — which is why it declares no
+        tracking in its App Store privacy report.
+      </p>
+      <p>
+        If we offer paid features, they are billed by Apple through the App Store; Apple
+        handles the payment and we never see your card details. See the
+        <a href="terms.html">Terms of Service</a> for how subscriptions work.
       </p>
 
       <h3>TestFlight</h3>
@@ -214,8 +271,10 @@
         (GDPR Art. 6(1)(a)), which you give with the checkbox on the signup form and can
         withdraw at any time. We process app usage and crash data on the basis of our
         <strong>legitimate interest</strong> (Art. 6(1)(f)) in understanding how the app
-        is used and keeping it working — we keep that data to a minimum, it never
-        includes your photos, and you can object to it using the contact below.
+        is used and keeping it working. We process crash and error reports on the same
+        basis, for the narrower interest of finding and fixing what breaks. We keep all of
+        it to a minimum, none of it includes your photos, and you can object to any of it
+        using the contact below.
       </p>
 
       <h2>Your rights</h2>
@@ -232,10 +291,11 @@
         The categories of personal information we collect are: <strong>identifiers</strong>
         (your email address, if you join the mailing list; a device identifier generated
         by our analytics provider inside the app) and <strong>internet or other
-        electronic network activity</strong> (which app features you used, crash reports,
-        and the IP address seen by our hosting providers). We collect them for the
+        electronic network activity</strong> (which app features you used, crash and error
+        reports, and the IP address seen by our hosting providers). We collect them for the
         purposes described above — running the mailing list, and improving and fixing the
-        app.
+        app. We keep no other category: no geolocation, no contacts, no biometrics, and
+        none of the contents of your photos.
       </p>
       <p>
         We do not sell or share personal information, we do not use it for cross-context
@@ -257,13 +317,13 @@
         changes affecting the mailing list, we will also mention it by email.
       </p>
 
-      <p class="muted" style="margin-top: 40px;">Effective date: July 19, 2026</p>
+      <p class="muted" style="margin-top: 40px;">Effective date: July 30, 2026</p>
     </div>
   </main>
 
   <footer class="site">
     <div class="wrap">
-      © 2026 True Color · <a href="mailto:connect@gettruecolor.com">connect@gettruecolor.com</a>
+      © 2026 True Color · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="mailto:connect@gettruecolor.com">connect@gettruecolor.com</a>
     </div>
   </footer>
 </body>
