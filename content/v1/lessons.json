@@ -1,72 +1,13 @@
 {
   "schemaVersion": 1,
-  "version": 1,
+  "version": 2,
   "lessons": [
-    {
-      "id": "darken-the-sky",
-      "title": "Darken the Sky",
-      "subtitle": "Curves under a gradient mask, the way a landscape is graded",
-      "minutes": 2,
-      "photo": "LessonSkyPhoto",
-      "photoExtension": "jpg",
-      "mode": "hands_on",
-      "stack": [
-        {
-          "id": "A0000000-0000-4000-8000-000000000001",
-          "name": "Image",
-          "visible": true,
-          "locked": false,
-          "clipped": false,
-          "opacity": 1,
-          "blend": 0,
-          "channels": {
-            "r": true,
-            "g": true,
-            "b": true
-          },
-          "content": {
-            "image": {}
-          }
-        }
-      ],
-      "steps": [
-        {
-          "text": "Every change lives on its own [[layer]]. Tap + and pick [[curves|Curves]] to add one.",
-          "anchor": "add_layer_button",
-          "goal": {
-            "did": "added_layer",
-            "kind": "curves"
-          }
-        },
-        {
-          "text": "Drag the middle of the line down. Everything darkens, sky and stone alike.",
-          "anchor": "adjust_chip",
-          "goal": {
-            "did": "adjusted",
-            "kind": "curves"
-          }
-        },
-        {
-          "text": "Tap [[mask|Mask]], add a [[gradient|Gradient]], then drag it down. Only the sky darkens.",
-          "anchor": "mask_chip",
-          "focus": "photo",
-          "goal": {
-            "did": "added_mask",
-            "kind": "gradient"
-          }
-        },
-        {
-          "text": "That's the whole move: one [[layer]], one curve, one [[mask]]. Look at what you made.",
-          "focus": "photo",
-          "finale": true
-        }
-      ]
-    },
     {
       "id": "editor-tour",
       "title": "Find Your Way Around",
       "subtitle": "The stack, the bar and the menu, in one pass",
       "minutes": 3,
+      "order": 10,
       "photo": "LessonSkyPhoto",
       "photoExtension": "jpg",
       "mode": "guided",
@@ -158,6 +99,673 @@
         },
         {
           "text": "That is the whole editor: a stack, a bar for what you picked, and a menu. Go build.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "first-edit",
+      "title": "Your First Edit",
+      "subtitle": "Add a layer, change it, take it back",
+      "minutes": 2,
+      "order": 20,
+      "photo": "LessonSkyPhoto",
+      "photoExtension": "jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000201",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "Every edit here is a [[layer]]. Add one, change it, take it off — that is the whole idea.",
+          "focus": "photo"
+        },
+        {
+          "text": "Tap + and pick [[exposure|Exposure]] — the one that makes a photo brighter or darker.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "exposure"
+          }
+        },
+        {
+          "text": "Now move Exposure and watch the whole picture follow. There is no correct number here.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "exposure"
+          }
+        },
+        {
+          "text": "It is a layer, not a new photo. Open Layers, hide it with the eye, then turn it back on.",
+          "anchor": "layers_button",
+          "goal": "toggled_visibility"
+        },
+        {
+          "text": "Add, adjust, take back — that is the loop. Everything else is a different kind of layer.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "light-and-shadow",
+      "title": "Light and Shadow",
+      "subtitle": "Move one end without moving the other",
+      "minutes": 3,
+      "order": 30,
+      "photo": "bee-1200",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/bee-1200.jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000301",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "The dark corners here have gone solid black. [[exposure|Exposure]] would ruin the rest.",
+          "focus": "photo"
+        },
+        {
+          "text": "Add [[tone|Tone]] instead. It reaches one end of the range at a time.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "tone"
+          }
+        },
+        {
+          "text": "Lift Shadows. Watch the dark corners open while the bee stays where it was.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "tone"
+          }
+        },
+        {
+          "text": "Blacks sets where the darkest tone lands. Pull it back if the shadows went milky.",
+          "anchor": "adjust_chip",
+          "focus": "photo"
+        },
+        {
+          "text": "One end at a time — that is the whole difference between Tone and Exposure.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "contrast",
+      "title": "Give It Some Contrast",
+      "subtitle": "The S curve, and why it works",
+      "minutes": 3,
+      "order": 40,
+      "photo": "castle-1800",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000401",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "This shot is flat. Open the dots menu and switch the [[histogram]] on.",
+          "anchor": "more_menu",
+          "goal": "opened_menu"
+        },
+        {
+          "text": "It bunches in the middle and never reaches either wall. That is flatness.",
+          "focus": "photo"
+        },
+        {
+          "text": "Add [[curves|Curves]] — the one tool that can move dark and bright in opposite directions.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "curves"
+          }
+        },
+        {
+          "text": "Pull a point in the lower half down, and one in the upper half up. That S is contrast.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "curves"
+          }
+        },
+        {
+          "text": "Steeper middle means tones spread apart. Everything else about contrast is that sentence.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "colour",
+      "title": "Colour Without Overdoing It",
+      "subtitle": "Why Vibrance and Saturation are not the same slider",
+      "minutes": 3,
+      "order": 50,
+      "photo": "hero-poster",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000501",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "Two sliders make colour stronger, differently. Add [[color_vibrance|Color & Vibrance]].",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "color_vibrance"
+          }
+        },
+        {
+          "text": "Push Saturation hard. Everything gets louder together, including what was already loud.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "color_vibrance"
+          }
+        },
+        {
+          "text": "Now bring Saturation back to zero and push Vibrance the same amount instead.",
+          "anchor": "adjust_chip",
+          "focus": "photo"
+        },
+        {
+          "text": "Vibrance leans on the muted colours and leaves the loud ones. That is why skin survives.",
+          "focus": "photo"
+        },
+        {
+          "text": "Reach for Vibrance first. Saturation is for when you actually want everything, evenly.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "levels",
+      "title": "Levels, Handle by Handle",
+      "subtitle": "Set the ends, bend the middle, fade the black",
+      "minutes": 3,
+      "order": 60,
+      "photo": "castle-1800",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000601",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "You met this photo with Curves. [[levels|Levels]] is the same job in three handles.",
+          "focus": "photo"
+        },
+        {
+          "text": "Add a [[levels|Levels]] layer. That graph is the [[histogram]] of everything below it.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "levels"
+          }
+        },
+        {
+          "text": "Drag the black and white input handles in, to where the hill really starts and ends.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "levels"
+          }
+        },
+        {
+          "text": "The middle handle is Gamma. It bends the midtones without moving either end.",
+          "anchor": "adjust_chip",
+          "focus": "photo"
+        },
+        {
+          "text": "Now lift the output black. The darkest tone stops being black — that is the fade.",
+          "anchor": "adjust_chip",
+          "focus": "photo"
+        },
+        {
+          "text": "Two handles set the ends, one bends the middle, two fade the result. That is Levels.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "black-and-white",
+      "title": "Colour, Removed on Purpose",
+      "subtitle": "Grey is a decision you make per colour",
+      "minutes": 3,
+      "order": 70,
+      "photo": "hero-poster",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000701",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "Grey is not one recipe. Add [[black_white|Black & White]] — every colour gets a slider.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "black_white"
+          }
+        },
+        {
+          "text": "The photo is grey now. Which grey each colour became is what those sliders decide.",
+          "focus": "photo"
+        },
+        {
+          "text": "Drag Blue down. Everything that was blue goes dark — here that is half the frame.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "black_white"
+          }
+        },
+        {
+          "text": "Now drag Red up. Two sliders, and the same photo has a different subject.",
+          "anchor": "adjust_chip",
+          "focus": "photo"
+        },
+        {
+          "text": "Colour did not disappear. You decided what each one is worth in grey.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "split-tone",
+      "title": "Warm Light, Cool Shade",
+      "subtitle": "One colour at each end of the range",
+      "minutes": 3,
+      "order": 80,
+      "photo": "bee-1200",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/bee-1200.jpg",
+      "mode": "hands_on",
+      "seedLook": "B0000000-0000-4000-8000-000000000001",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000801",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "This one opens with a [[look|Look]] already on it. Open [[layer_stack|Layers]] and see.",
+          "anchor": "layers_button",
+          "goal": "opened_layers"
+        },
+        {
+          "text": "Add [[split_toning|Split Toning]] on top — one colour for the dark end, one for the light.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "split_toning"
+          }
+        },
+        {
+          "text": "Set Highlights Hue warm, then raise its Saturation until you can just barely see it.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "split_toning"
+          }
+        },
+        {
+          "text": "Take Shadows Hue the other way, to blue. Warm light, cool shade — the oldest grade.",
+          "anchor": "adjust_chip",
+          "focus": "photo"
+        },
+        {
+          "text": "Balance decides where the two hand over. Nudge it and watch the split move.",
+          "anchor": "adjust_chip",
+          "focus": "photo"
+        },
+        {
+          "text": "Two hues, small amounts. This is seasoning, not sauce — subtle wins every time.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "title": "Detail, Without the Crunch",
+      "subtitle": "Sharpen, Clarity and Denoise do different jobs",
+      "minutes": 4,
+      "order": 90,
+      "photo": "castle-1800",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000901",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "Three tools all look like “more detail”. They are not. Add [[sharpen|Sharpen]] first.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "sharpen"
+          }
+        },
+        {
+          "text": "Raise Amount until the edges bite, then stop. Keep Radius small, or you get halos.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "sharpen"
+          }
+        },
+        {
+          "text": "Add [[clarity_texture|Clarity & Texture]]. Clarity takes big shapes, Texture fine ones.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "clarity_texture"
+          }
+        },
+        {
+          "text": "Push Clarity for punch in the stonework, then Texture for the grain inside it.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "clarity_texture"
+          }
+        },
+        {
+          "text": "Add [[denoise|Denoise]] and push Amount to the top. Fine detail turns to plastic.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "denoise"
+          }
+        },
+        {
+          "text": "Bring Amount back down and raise Detail. That slider is what protects structure.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "denoise"
+          }
+        },
+        {
+          "text": "Sharpen does edges, Clarity shapes, Texture grain, Denoise removes. Match tool to job.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "inside-a-look",
+      "title": "Look Inside a Look",
+      "subtitle": "A Look is a folder of ordinary layers",
+      "minutes": 3,
+      "order": 100,
+      "photo": "hero-poster",
+      "photoExtension": "jpg",
+      "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
+      "mode": "hands_on",
+      "seedLook": "B0000000-0000-4000-8000-000000000003",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000001001",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "This photo opens on a [[look|Look]]. Open [[layer_stack|Layers]] and find out what it is.",
+          "anchor": "layers_button",
+          "goal": "opened_layers"
+        },
+        {
+          "text": "A folder holding Color & Vibrance, Color Balance and a [[gradient_map|Gradient Map]].",
+          "anchor": "layers_button"
+        },
+        {
+          "text": "Select the Gradient Map inside it. Everything in a Look edits like any other layer.",
+          "anchor": "layers_button",
+          "goal": "selected_layer"
+        },
+        {
+          "text": "Drop its [[opacity|Opacity]]. That grade weakens, and the rest of the Look does not.",
+          "anchor": "layers_button",
+          "goal": "changed_opacity"
+        },
+        {
+          "text": "Now change the [[color_balance|Color Balance]] inside. A Look is a start, not a verdict.",
+          "anchor": "adjust_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "adjusted",
+            "kind": "color_balance"
+          }
+        },
+        {
+          "text": "Nothing here is sealed. Every Look is layers you already know how to change.",
+          "focus": "photo",
+          "finale": true
+        }
+      ]
+    },
+    {
+      "id": "darken-the-sky",
+      "title": "Darken the Sky",
+      "subtitle": "Curves under a gradient mask, the way a landscape is graded",
+      "minutes": 2,
+      "order": 110,
+      "photo": "LessonSkyPhoto",
+      "photoExtension": "jpg",
+      "mode": "hands_on",
+      "stack": [
+        {
+          "id": "A0000000-0000-4000-8000-000000000001",
+          "name": "Image",
+          "visible": true,
+          "locked": false,
+          "clipped": false,
+          "opacity": 1,
+          "blend": 0,
+          "channels": {
+            "r": true,
+            "g": true,
+            "b": true
+          },
+          "content": {
+            "image": {}
+          }
+        }
+      ],
+      "steps": [
+        {
+          "text": "Every change lives on its own [[layer]]. Tap + and pick [[curves|Curves]] to add one.",
+          "anchor": "add_layer_button",
+          "goal": {
+            "did": "added_layer",
+            "kind": "curves"
+          }
+        },
+        {
+          "text": "Drag the middle of the line down. Everything darkens, sky and stone alike.",
+          "anchor": "adjust_chip",
+          "goal": {
+            "did": "adjusted",
+            "kind": "curves"
+          }
+        },
+        {
+          "text": "Tap [[mask|Mask]], add a [[gradient|Gradient]], then drag it down. Only the sky darkens.",
+          "anchor": "mask_chip",
+          "focus": "photo",
+          "goal": {
+            "did": "added_mask",
+            "kind": "gradient"
+          }
+        },
+        {
+          "text": "That's the whole move: one [[layer]], one curve, one [[mask]]. Look at what you made.",
           "focus": "photo",
           "finale": true
         }
