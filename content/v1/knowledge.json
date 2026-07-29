@@ -1,0 +1,606 @@
+{
+  "schemaVersion": 1,
+  "version": 2,
+  "articles": [
+    {
+      "id": "non_destructive",
+      "title": "Non-destructive editing",
+      "category": "concepts",
+      "summary": "Your original file is never written to. Every edit is a layer that can be turned off.",
+      "related": [
+        "layer",
+        "layer_stack",
+        "project"
+      ]
+    },
+    {
+      "id": "layer",
+      "title": "Layer",
+      "category": "concepts",
+      "summary": "One change, stacked on the photo. It can be hidden, masked, faded or deleted at any time.",
+      "related": [
+        "layer_stack",
+        "adjustment_layer",
+        "mask",
+        "opacity"
+      ]
+    },
+    {
+      "id": "layer_stack",
+      "title": "The stack",
+      "category": "concepts",
+      "summary": "Layers are applied bottom to top. Order changes the result.",
+      "related": [
+        "layer",
+        "group"
+      ]
+    },
+    {
+      "id": "adjustment_layer",
+      "title": "Adjustment layer",
+      "category": "concepts",
+      "summary": "A layer that changes colour or tone rather than adding pixels.",
+      "related": [
+        "layer",
+        "mask"
+      ]
+    },
+    {
+      "id": "group",
+      "title": "Group",
+      "category": "concepts",
+      "summary": "Several layers treated as one, with their own opacity and mask.",
+      "related": [
+        "layer_stack",
+        "look"
+      ]
+    },
+    {
+      "id": "project",
+      "title": "Project",
+      "category": "concepts",
+      "summary": "A photo plus its layer stack, saved and reopenable.",
+      "related": [
+        "non_destructive"
+      ]
+    },
+    {
+      "id": "histogram",
+      "title": "Histogram",
+      "category": "concepts",
+      "summary": "How much of the photo sits at each brightness, drawn as a graph.",
+      "related": [
+        "levels",
+        "curves"
+      ]
+    },
+    {
+      "id": "channel",
+      "title": "Channel",
+      "category": "concepts",
+      "summary": "The red, green and blue records that make up a colour image.",
+      "related": [
+        "channel_mixer",
+        "curves"
+      ]
+    },
+    {
+      "id": "look",
+      "title": "Look",
+      "category": "concepts",
+      "summary": "A saved layer stack you can drop onto any photo in one tap.",
+      "related": [
+        "group",
+        "color_lookup"
+      ]
+    },
+    {
+      "id": "color_lookup",
+      "title": "LUT",
+      "category": "concepts",
+      "summary": "A lookup table that maps every colour to another one. The engine here needs none.",
+      "related": [
+        "look",
+        "filters"
+      ]
+    },
+    {
+      "id": "tone",
+      "title": "Tone",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "exposure",
+      "title": "Exposure",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "curves",
+      "title": "Curves",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "levels",
+      "title": "Levels",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "brightness_contrast",
+      "title": "Brightness & Contrast",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "clarity_texture",
+      "title": "Clarity & Texture",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "sharpen",
+      "title": "Sharpen",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "dehaze",
+      "title": "Dehaze",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "denoise",
+      "title": "Denoise",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "color_vibrance",
+      "title": "Color & Vibrance",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "hue_saturation",
+      "title": "Hue & Saturation",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "color_balance",
+      "title": "Color Balance",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "selective_color",
+      "title": "Selective Color",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "black_white",
+      "title": "Black & White",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "lens",
+      "title": "Lens",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "split_toning",
+      "title": "Split Toning",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "channel_mixer",
+      "title": "Channel Mixer",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "lab",
+      "title": "Lab Color",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "vignette",
+      "title": "Vignette",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "gradient_map",
+      "title": "Gradient Map",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "grain",
+      "title": "Grain",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "posterize",
+      "title": "Posterize",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "threshold",
+      "title": "Threshold",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "invert",
+      "title": "Invert",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "solid_color",
+      "title": "Solid Color",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "gradient_fill",
+      "title": "Gradient Fill",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "image",
+      "title": "Image layer",
+      "category": "layers",
+      "related": [
+        "adjustment_layer",
+        "mask",
+        "blend_mode"
+      ]
+    },
+    {
+      "id": "mask",
+      "title": "Mask",
+      "category": "masks",
+      "summary": "Where a layer applies, and how strongly. White applies, black does not.",
+      "related": [
+        "mask_component",
+        "feather",
+        "density",
+        "invert_mask"
+      ]
+    },
+    {
+      "id": "mask_component",
+      "title": "Mask component",
+      "category": "masks",
+      "summary": "One source of selection in a mask. Several stack, each adding, subtracting or intersecting.",
+      "related": [
+        "mask",
+        "mask_mode"
+      ]
+    },
+    {
+      "id": "mask_mode",
+      "title": "Add, subtract, intersect",
+      "category": "masks",
+      "summary": "How a component folds into the mask beneath it.",
+      "related": [
+        "mask_component"
+      ]
+    },
+    {
+      "id": "brush",
+      "title": "Brush mask",
+      "category": "masks",
+      "summary": "Paint the selection by hand.",
+      "related": [
+        "mask",
+        "mask_component"
+      ]
+    },
+    {
+      "id": "gradient",
+      "title": "Gradient mask",
+      "category": "masks",
+      "summary": "A linear or radial falloff, dragged across the frame.",
+      "related": [
+        "mask",
+        "feather"
+      ]
+    },
+    {
+      "id": "luminosity",
+      "title": "Luminosity mask",
+      "category": "masks",
+      "summary": "Select by brightness: shadows only, highlights only, or a band between.",
+      "related": [
+        "mask",
+        "histogram"
+      ]
+    },
+    {
+      "id": "subject",
+      "title": "Subject mask",
+      "category": "masks",
+      "summary": "The main subject, found automatically. Needs a device that can run it.",
+      "related": [
+        "mask",
+        "depth"
+      ]
+    },
+    {
+      "id": "depth",
+      "title": "Depth mask",
+      "category": "masks",
+      "summary": "Select by distance from the camera.",
+      "related": [
+        "mask",
+        "subject"
+      ]
+    },
+    {
+      "id": "feather",
+      "title": "Feather",
+      "category": "masks",
+      "summary": "How soft the edge of a mask is.",
+      "related": [
+        "mask"
+      ]
+    },
+    {
+      "id": "density",
+      "title": "Density",
+      "category": "masks",
+      "summary": "How strongly a mask applies at full white.",
+      "related": [
+        "mask",
+        "opacity"
+      ]
+    },
+    {
+      "id": "invert_mask",
+      "title": "Invert",
+      "category": "masks",
+      "summary": "Swap what a mask selects for what it does not.",
+      "related": [
+        "mask"
+      ]
+    },
+    {
+      "id": "rubylith",
+      "title": "Mask overlay",
+      "category": "masks",
+      "summary": "The red tint that shows a mask while you are editing it.",
+      "related": [
+        "mask"
+      ]
+    },
+    {
+      "id": "blend_mode",
+      "title": "Blend mode",
+      "category": "blending",
+      "summary": "How a layer's result is combined with everything under it.",
+      "related": [
+        "opacity",
+        "blend_if"
+      ]
+    },
+    {
+      "id": "opacity",
+      "title": "Opacity",
+      "category": "blending",
+      "summary": "How much of a layer reaches the result.",
+      "related": [
+        "blend_mode",
+        "density"
+      ]
+    },
+    {
+      "id": "blend_if",
+      "title": "Blend If",
+      "category": "blending",
+      "summary": "Restrict a layer to a range of tones in the layers beneath.",
+      "related": [
+        "blend_mode",
+        "channel"
+      ]
+    },
+    {
+      "id": "clipping",
+      "title": "Clipping",
+      "category": "blending",
+      "summary": "Confine a layer to the one directly below it.",
+      "related": [
+        "layer_stack",
+        "group"
+      ]
+    },
+    {
+      "id": "raw",
+      "title": "RAW",
+      "category": "raw",
+      "summary": "The sensor's own data, before a camera turned it into a picture.",
+      "related": [
+        "develop",
+        "raw_decoder"
+      ]
+    },
+    {
+      "id": "develop",
+      "title": "Develop",
+      "category": "raw",
+      "summary": "Turning RAW sensor data into an image: exposure, white balance, detail.",
+      "related": [
+        "raw",
+        "raw_decoder"
+      ]
+    },
+    {
+      "id": "raw_decoder",
+      "title": "Decoder version",
+      "category": "raw",
+      "summary": "Which of Apple's RAW pipelines developed this file.",
+      "related": [
+        "raw",
+        "develop"
+      ]
+    },
+    {
+      "id": "crop",
+      "title": "Crop",
+      "category": "workflow",
+      "summary": "Change the frame. Reversible, like everything else.",
+      "related": [
+        "non_destructive"
+      ]
+    },
+    {
+      "id": "undo",
+      "title": "Undo",
+      "category": "workflow",
+      "summary": "Two fingers on the photo undoes. Three redoes."
+    },
+    {
+      "id": "export",
+      "title": "Export",
+      "category": "workflow",
+      "summary": "Render the stack and save or share the result.",
+      "related": [
+        "project"
+      ]
+    },
+    {
+      "id": "proxy",
+      "title": "Proxy",
+      "category": "workflow",
+      "summary": "The smaller copy the editor draws while you work. Export always uses full resolution."
+    },
+    {
+      "id": "filters",
+      "title": "Filters",
+      "category": "workflow",
+      "summary": "One-tap colour presets built on lookup tables.",
+      "related": [
+        "color_lookup",
+        "look"
+      ]
+    }
+  ]
+}
