@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 2,
+  "version": 10,
   "articles": [
     {
       "id": "non_destructive",
@@ -11,7 +11,8 @@
         "layer",
         "layer_stack",
         "project"
-      ]
+      ],
+      "body": "Nothing you do rewrites the file you started from. Each change is a [[layer]] sitting on top, and turning it off or deleting it returns the photo exactly as it was.\n\nThat is why you can come back a week later and still take one thing back without losing the rest."
     },
     {
       "id": "layer",
@@ -23,17 +24,34 @@
         "adjustment_layer",
         "mask",
         "opacity"
+      ],
+      "body": "One change, stacked on the photo. **Every layer can be masked and blended**: give it a [[mask]] and it applies only where you say, give it a [[blend_mode|blend mode]] and it combines with what is underneath instead of covering it.\n\nDrop its [[opacity]] and you get less of whatever it does.",
+      "demo": "chips",
+      "parameters": [
+        {
+          "name": "Adjust",
+          "what": "The layer's own settings — the panel differs per kind."
+        },
+        {
+          "name": "Blend",
+          "what": "Blend mode, opacity, channels and [[blend_if|Blend If]]."
+        },
+        {
+          "name": "Mask",
+          "what": "Where it applies. Empty means everywhere."
+        }
       ]
     },
     {
       "id": "layer_stack",
-      "title": "The stack",
+      "title": "Stack",
       "category": "concepts",
-      "summary": "Layers are applied bottom to top. Order changes the result.",
+      "summary": "Layers are applied from the bottom up. Order changes the result.",
       "related": [
         "layer",
         "group"
-      ]
+      ],
+      "body": "The photo sits at the bottom and never moves. Everything above it is applied in order, each [[layer]] seeing the result of everything beneath.\n\nMove one up or down and the result changes — a [[curves|Curves]] under a [[black_white|Black & White]] is not the same picture as one above it."
     },
     {
       "id": "adjustment_layer",
@@ -43,16 +61,42 @@
       "related": [
         "layer",
         "mask"
-      ]
+      ],
+      "body": "A layer that changes colour or tone instead of adding pixels. [[curves|Curves]], [[exposure|Exposure]], [[hue_saturation|Hue & Saturation]] are all adjustment layers.\n\nThe + on the rail adds one; the capsule above it is the [[layer_stack|stack]] — scroll it to pick which layer the bar at the bottom is addressing.",
+      "demo": "layer_rail"
     },
     {
       "id": "group",
       "title": "Group",
       "category": "concepts",
-      "summary": "Several layers treated as one, with their own opacity and mask.",
+      "summary": "Several layers folded into one, with their own opacity, blend mode and mask.",
       "related": [
         "layer_stack",
         "look"
+      ],
+      "body": "Everything inside runs in order first, then the group's own settings apply to the **net result** — so one [[opacity]] slider dials back the whole recipe at once, and one [[mask]] confines all of it.\n\nBy default a group is *pass-through*: the layers inside see the real photo beneath the group, exactly as if it were not there. Turning that off isolates them, so they see only each other.",
+      "icon": "folder",
+      "parameters": [
+        {
+          "name": "Opacity",
+          "what": "Fades everything inside, together."
+        },
+        {
+          "name": "Blend mode",
+          "what": "How the group's net result meets what is under it."
+        },
+        {
+          "name": "Mask",
+          "what": "Confines the whole group at once."
+        },
+        {
+          "name": "Pass-through",
+          "what": "On: layers inside see through to the photo. Off: they see only the group."
+        },
+        {
+          "name": "Channels",
+          "what": "Turning one off reverts that channel to the backdrop for everything inside."
+        }
       ]
     },
     {
@@ -62,7 +106,8 @@
       "summary": "A photo plus its layer stack, saved and reopenable.",
       "related": [
         "non_destructive"
-      ]
+      ],
+      "body": "A photo plus its [[layer_stack|stack]], saved together. Reopening one puts you back exactly where you stopped.\n\nThe original file is kept untouched alongside the edits — see [[non_destructive|nothing is overwritten]]."
     },
     {
       "id": "histogram",
@@ -72,7 +117,10 @@
       "related": [
         "levels",
         "curves"
-      ]
+      ],
+      "body": "How much of the photo sits at each brightness: shadows left, highlights right, height is how many pixels.\n\nA spike against either wall means detail is being lost there. It describes; it does not judge — a night shot is supposed to lean left.",
+      "demo": "histogram",
+      "icon": "chart.bar.xaxis"
     },
     {
       "id": "channel",
@@ -82,17 +130,35 @@
       "related": [
         "channel_mixer",
         "curves"
+      ],
+      "body": "A colour photo is three greyscale records — red, green and blue — stacked on each other.\n\nThe selector appears wherever a tool can work on one at a time: [[curves|Curves]] and [[levels|Levels]] both take a channel, [[blend_if|Blend If]] can trigger on one, and [[channel_mixer|Channel Mixer]] builds each output channel from all three. On the [[blend_mode|Blend]] panel the R / G / B toggles do something different again — they stop the layer writing to a channel at all.",
+      "demo": "channel_dots",
+      "parameters": [
+        {
+          "name": "RGB",
+          "what": "All three at once — the usual case."
+        },
+        {
+          "name": "R / G / B",
+          "what": "One record at a time. This is where colour casts get fixed."
+        },
+        {
+          "name": "Blend toggles",
+          "what": "Not a selector: an off channel means the layer never writes to it."
+        }
       ]
     },
     {
       "id": "look",
       "title": "Look",
       "category": "concepts",
-      "summary": "A saved layer stack you can drop onto any photo in one tap.",
+      "summary": "A saved stack you can drop onto any photo in one tap.",
       "related": [
         "group",
         "color_lookup"
-      ]
+      ],
+      "body": "A look is **its own kind of layer**, not a [[group]] — a container stamped with which look it came from, which is what lets it be swapped for another in one move.\n\nIt can become an ordinary group: *Ungroup Into a Folder* keeps every layer exactly as it is and simply stops it being a look, so you can rearrange it freely.\n\nMasks are never saved into a look — it has to work on a photo it has never seen.",
+      "icon": "sparkles.rectangle.stack"
     },
     {
       "id": "color_lookup",
@@ -102,7 +168,9 @@
       "related": [
         "look",
         "filters"
-      ]
+      ],
+      "body": "A lookup table maps every colour to another one, once, for the whole picture. It is fast and it is fixed: you cannot ask it why.\n\nThe [[filters|filters]] here are built on tables. Everything else in the editor is real maths on the pixels, which is what lets you tune it after the fact.",
+      "icon": "cube"
     },
     {
       "id": "tone",
@@ -112,7 +180,27 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Shadows and highlights, separately. Lift what is too dark, pull back what is blown out, without flattening everything in between.",
+      "parameters": [
+        {
+          "name": "Highlights",
+          "what": "Pulls back what is close to blown out."
+        },
+        {
+          "name": "Shadows",
+          "what": "Lifts what is too dark."
+        },
+        {
+          "name": "Whites",
+          "what": "Where the brightest tones land."
+        },
+        {
+          "name": "Blacks",
+          "what": "Where the darkest tones land."
+        }
+      ],
+      "icon": "sun.haze"
     },
     {
       "id": "exposure",
@@ -122,7 +210,23 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Overall brightness, in stops, the way a camera means it. Offset shifts the blacks; Gamma bends the midtones.",
+      "parameters": [
+        {
+          "name": "Exposure",
+          "what": "Overall brightness, in stops."
+        },
+        {
+          "name": "Offset",
+          "what": "Lifts or drops the blacks."
+        },
+        {
+          "name": "Gamma",
+          "what": "Bends the midtones, leaving black and white where they are."
+        }
+      ],
+      "icon": "plusminus.circle"
     },
     {
       "id": "curves",
@@ -132,7 +236,28 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "The tone curve: input across the bottom, output up the side. Drag a point down and everything at that brightness gets darker.\n\nAn S makes contrast. Working one [[channel]] at a time is how colour casts get fixed.",
+      "demo": "curves",
+      "parameters": [
+        {
+          "name": "Master",
+          "what": "One curve for all three channels at once."
+        },
+        {
+          "name": "Red / Green / Blue",
+          "what": "One [[channel]] at a time — this is where colour casts get fixed."
+        },
+        {
+          "name": "Point",
+          "what": "Tap the line to add one, drag to move, drag off to delete."
+        },
+        {
+          "name": "Lab mode",
+          "what": "On a [[lab|Lab]] layer the three slots carry L, a and b instead of R, G and B: the first curve is lightness alone, the other two are the colour axes. Auto is hidden there — a per-RGB stretch has no meaning in Lab."
+        }
+      ],
+      "icon": "point.bottomleft.forward.to.point.topright.scurvepath"
     },
     {
       "id": "levels",
@@ -142,7 +267,28 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Sets where black, white and the midtone sit. Pull the outer handles to the ends of the [[histogram]] and the photo uses its full range.",
+      "demo": "levels",
+      "parameters": [
+        {
+          "name": "Black / White input",
+          "what": "Where the darkest and brightest tones land. Pull them to the ends of the histogram."
+        },
+        {
+          "name": "Gamma",
+          "what": "Bends the midtones without moving black or white."
+        },
+        {
+          "name": "Black / White output",
+          "what": "Limits the result's range — for a faded, filmic black."
+        },
+        {
+          "name": "Channel",
+          "what": "All three at once, or one at a time."
+        }
+      ],
+      "icon": "chart.bar"
     },
     {
       "id": "brightness_contrast",
@@ -152,7 +298,19 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "The blunt pair. Fast and obvious; [[curves]] or [[levels]] give you the same thing with control over where it lands.",
+      "parameters": [
+        {
+          "name": "Brightness",
+          "what": "Everything up or down together."
+        },
+        {
+          "name": "Contrast",
+          "what": "Pushes tones away from the middle, or towards it."
+        }
+      ],
+      "icon": "sun.max"
     },
     {
       "id": "clarity_texture",
@@ -162,7 +320,19 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Contrast at two different scales. Texture works on fine detail like skin and fabric; Clarity works on broader shapes and reads as punch.",
+      "parameters": [
+        {
+          "name": "Clarity",
+          "what": "Contrast on broader shapes. Reads as punch."
+        },
+        {
+          "name": "Texture",
+          "what": "Contrast on fine detail — skin, fabric, foliage."
+        }
+      ],
+      "icon": "circle.grid.3x3.fill"
     },
     {
       "id": "sharpen",
@@ -172,7 +342,19 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Adds contrast at edges so detail reads as crisper. Nothing is recovered — it is emphasis, not information.\n\nToo much shows as a bright halo along the edges.",
+      "parameters": [
+        {
+          "name": "Amount",
+          "what": "How much edge contrast to add."
+        },
+        {
+          "name": "Radius",
+          "what": "How wide the edge halo is. Small is safer."
+        }
+      ],
+      "icon": "triangle.righthalf.filled"
     },
     {
       "id": "dehaze",
@@ -182,7 +364,15 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Cuts through atmospheric haze by stretching contrast in the flattest, most distant parts of the frame.",
+      "parameters": [
+        {
+          "name": "Amount",
+          "what": "How hard to cut the haze. Negative adds it back."
+        }
+      ],
+      "icon": "cloud.fog"
     },
     {
       "id": "denoise",
@@ -192,7 +382,19 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Smooths the speckle of a high-ISO shot. Every setting trades noise for detail, so it is a question of how much you are willing to give up.",
+      "parameters": [
+        {
+          "name": "Amount",
+          "what": "How much smoothing. Too much turns detail to plastic."
+        },
+        {
+          "name": "Detail",
+          "what": "How much fine structure to protect while smoothing."
+        }
+      ],
+      "icon": "aqi.low"
     },
     {
       "id": "color_vibrance",
@@ -202,7 +404,27 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Saturation with restraint: Vibrance pushes the muted colours and leaves the already-strong ones alone, so skin survives.",
+      "parameters": [
+        {
+          "name": "Temperature",
+          "what": "Warmer or cooler."
+        },
+        {
+          "name": "Tint",
+          "what": "Green or magenta, the other white-balance axis."
+        },
+        {
+          "name": "Vibrance",
+          "what": "Pushes muted colours and leaves the strong ones alone. Kinder to skin."
+        },
+        {
+          "name": "Saturation",
+          "what": "Pushes everything equally."
+        }
+      ],
+      "icon": "sparkles"
     },
     {
       "id": "hue_saturation",
@@ -212,7 +434,40 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Shifts hue, saturation and lightness — for the whole picture or for one band of colour at a time.\n\nThe per-band version is how you change one colour without touching the rest.",
+      "demo": "hue_range",
+      "parameters": [
+        {
+          "name": "Adjust / Range",
+          "what": "The two tabs: what to change, and which hues it applies to."
+        },
+        {
+          "name": "Hue",
+          "what": "Rotates colours around the wheel."
+        },
+        {
+          "name": "Saturation",
+          "what": "How strong the colour is. Down to zero is grey."
+        },
+        {
+          "name": "Lightness",
+          "what": "Brightens or darkens the affected colours."
+        },
+        {
+          "name": "Bands",
+          "what": "Master, or one of Reds, Yellows, Greens, Cyans, Blues, Magentas."
+        },
+        {
+          "name": "Softness",
+          "what": "Feathers the band's edges so the change blends."
+        },
+        {
+          "name": "Colorize",
+          "what": "Throws away the original hues and tints everything one colour."
+        }
+      ],
+      "icon": "circle.hexagongrid.fill"
     },
     {
       "id": "color_balance",
@@ -222,7 +477,36 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Warm or cool, per tonal range. Shadows, midtones and highlights each get their own set, so you can cool the shadows and warm the light.",
+      "demo": "color_wheels",
+      "parameters": [
+        {
+          "name": "Tonal range",
+          "what": "Shadows, midtones or highlights — each keeps its own set."
+        },
+        {
+          "name": "Cyan – Red",
+          "what": "The first of the three shifts."
+        },
+        {
+          "name": "Magenta – Green",
+          "what": "The second."
+        },
+        {
+          "name": "Yellow – Blue",
+          "what": "The third."
+        },
+        {
+          "name": "Preserve Luminosity",
+          "what": "Keeps brightness where it was while colour moves."
+        },
+        {
+          "name": "Wheel / Sliders",
+          "what": "The same three shifts, dragged on a wheel or set one at a time."
+        }
+      ],
+      "icon": "dial.medium"
     },
     {
       "id": "selective_color",
@@ -232,7 +516,23 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Adjusts the ink mix inside one colour family. Reds, yellows, cyans and so on, each tuned in CMYK.\n\nA press-room tool that turns out to be very good at skies.",
+      "parameters": [
+        {
+          "name": "Colour band",
+          "what": "Which family you are adjusting — reds, yellows, cyans and so on."
+        },
+        {
+          "name": "Cyan / Magenta / Yellow / Black",
+          "what": "The ink mix inside that family."
+        },
+        {
+          "name": "Method",
+          "what": "Relative scales the change with what is already there; Absolute applies it flat."
+        }
+      ],
+      "icon": "swatchpalette"
     },
     {
       "id": "black_white",
@@ -242,7 +542,16 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Converts to greyscale with a say in how each colour translates. A red filter darkens a blue sky; here you set that per colour.",
+      "demo": "black_white",
+      "parameters": [
+        {
+          "name": "Red / Yellow / Green / Cyan / Blue / Magenta",
+          "what": "How bright each colour becomes in grey. Drop Blue and a blue sky goes dramatic."
+        }
+      ],
+      "icon": "circle.righthalf.filled"
     },
     {
       "id": "lens",
@@ -252,7 +561,23 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "A colour filter over the lens: warm it, cool it, or tint it, at a strength you choose.",
+      "parameters": [
+        {
+          "name": "Filter",
+          "what": "Which colour sits over the lens — warming, cooling, sepia and the rest."
+        },
+        {
+          "name": "Density",
+          "what": "How strong the filter is."
+        },
+        {
+          "name": "Preserve Luminosity",
+          "what": "Keeps the photo from darkening as the filter loads."
+        }
+      ],
+      "icon": "smallcircle.filled.circle"
     },
     {
       "id": "split_toning",
@@ -262,7 +587,31 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "One colour into the shadows, another into the highlights. The classic cool-shadow, warm-highlight film look lives here.",
+      "parameters": [
+        {
+          "name": "Shadows Hue",
+          "what": "The colour that goes into the dark end."
+        },
+        {
+          "name": "Shadows Saturation",
+          "what": "How much of it."
+        },
+        {
+          "name": "Highlights Hue",
+          "what": "The colour that goes into the bright end."
+        },
+        {
+          "name": "Highlights Saturation",
+          "what": "How much of it."
+        },
+        {
+          "name": "Balance",
+          "what": "Where the handover between the two sits."
+        }
+      ],
+      "icon": "circle.tophalf.filled"
     },
     {
       "id": "channel_mixer",
@@ -272,7 +621,28 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Builds each output [[channel]] from a mix of the input ones. Powerful, unforgiving, and the honest way to a black and white conversion.",
+      "demo": "channel_mixer",
+      "parameters": [
+        {
+          "name": "Output channel",
+          "what": "Which channel you are building: red, green or blue."
+        },
+        {
+          "name": "Source sliders",
+          "what": "How much of each input channel goes into it."
+        },
+        {
+          "name": "Constant",
+          "what": "Adds flat brightness to the output channel."
+        },
+        {
+          "name": "Presets",
+          "what": "Black & White, the classic camera filters — Red, Orange, Yellow, Green, Blue — and Infrared."
+        }
+      ],
+      "icon": "slider.vertical.3"
     },
     {
       "id": "lab",
@@ -282,7 +652,27 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Works in Lab, where lightness is kept apart from colour. Push colour hard without the picture getting brighter, or the reverse.",
+      "parameters": [
+        {
+          "name": "Lightness Contrast",
+          "what": "Contrast on brightness alone, with colour untouched."
+        },
+        {
+          "name": "Color Boost",
+          "what": "Saturation without the picture getting brighter."
+        },
+        {
+          "name": "Green – Magenta",
+          "what": "One of the two colour axes."
+        },
+        {
+          "name": "Blue – Yellow",
+          "what": "The other."
+        }
+      ],
+      "icon": "circle.grid.cross"
     },
     {
       "id": "vignette",
@@ -292,7 +682,19 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Darkens or lightens the corners to hold the eye in the middle. Size, softness and roundness are yours.",
+      "parameters": [
+        {
+          "name": "Amount",
+          "what": "Darkens the corners, or lightens them."
+        },
+        {
+          "name": "Midpoint",
+          "what": "How far in from the edge it starts."
+        }
+      ],
+      "icon": "camera.aperture"
     },
     {
       "id": "gradient_map",
@@ -302,7 +704,24 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Maps the photo's brightness onto a gradient: darkest pixels take the first colour, brightest the last.\n\nThe basis of duotones, and of a lot of cinematic grades.",
+      "demo": "gradient_bar",
+      "parameters": [
+        {
+          "name": "Gradient",
+          "what": "Darkest pixels take the first colour, brightest the last."
+        },
+        {
+          "name": "Shadows / Midtones / Highlights",
+          "what": "Where along the ramp each tonal range lands."
+        },
+        {
+          "name": "Smoothness",
+          "what": "How gradual the handover between stops is."
+        }
+      ],
+      "icon": "lightspectrum.horizontal"
     },
     {
       "id": "grain",
@@ -312,7 +731,23 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Adds film grain. Size and roughness are separate, because 35mm and medium format do not look alike.",
+      "parameters": [
+        {
+          "name": "Amount",
+          "what": "How much grain."
+        },
+        {
+          "name": "Size",
+          "what": "How large each grain is."
+        },
+        {
+          "name": "Roughness",
+          "what": "How uneven the grain field is."
+        }
+      ],
+      "icon": "aqi.medium"
     },
     {
       "id": "posterize",
@@ -322,7 +757,16 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Cuts the number of levels per [[channel]], so smooth gradients break into flat bands.",
+      "demo": "posterize",
+      "parameters": [
+        {
+          "name": "Levels",
+          "what": "How many steps per channel. Fewer means broader, flatter bands."
+        }
+      ],
+      "icon": "rectangle.split.3x1"
     },
     {
       "id": "threshold",
@@ -332,7 +776,16 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Everything above a brightness goes white, everything below goes black. No grey.\n\nUseful for finding exactly where your highlights clip.",
+      "demo": "threshold",
+      "parameters": [
+        {
+          "name": "Level",
+          "what": "The cut. Everything darker goes black, everything brighter goes white."
+        }
+      ],
+      "icon": "circle.lefthalf.filled.righthalf.striped.horizontal"
     },
     {
       "id": "invert",
@@ -342,7 +795,9 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "Flips every value: black to white, blue to orange. No settings.",
+      "icon": "circle.lefthalf.filled.inverse"
     },
     {
       "id": "solid_color",
@@ -352,7 +807,15 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "A flat colour, filling the frame. Almost always paired with a [[blend_mode|blend mode]] and a [[mask]] — on its own it just covers the photo.",
+      "parameters": [
+        {
+          "name": "Color",
+          "what": "The fill, alpha included. Pair it with a blend mode and a mask, or it just covers the photo."
+        }
+      ],
+      "icon": "drop.fill"
     },
     {
       "id": "gradient_fill",
@@ -362,7 +825,28 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "A gradient, filling the frame. Same idea as [[solid_color|Solid Color]]: it earns its keep through a [[blend_mode|blend mode]] and a [[mask]].",
+      "demo": "gradient_bar",
+      "parameters": [
+        {
+          "name": "Gradient",
+          "what": "The colours, and where each one sits."
+        },
+        {
+          "name": "Linear / Radial / Angle / Reflected / Diamond",
+          "what": "How the gradient is laid over the frame."
+        },
+        {
+          "name": "Angle",
+          "what": "Which way the gradient runs."
+        },
+        {
+          "name": "Smoothness",
+          "what": "How gradual the handover between stops is."
+        }
+      ],
+      "icon": "circle.bottomhalf.filled"
     },
     {
       "id": "image",
@@ -372,7 +856,9 @@
         "adjustment_layer",
         "mask",
         "blend_mode"
-      ]
+      ],
+      "body": "The photo itself, at the bottom of the [[layer_stack|stack]]. It cannot be deleted or reordered, and for a [[raw|RAW]] file it carries the [[develop]] settings.",
+      "icon": "photo"
     },
     {
       "id": "mask",
@@ -384,7 +870,9 @@
         "feather",
         "density",
         "invert_mask"
-      ]
+      ],
+      "body": "Where a layer applies, and how strongly. White applies, black does not, grey applies partly.\n\nA mask is built from [[mask_component|components]] — a [[gradient]], a [[brush]], a [[subject]] — which stack on each other.",
+      "demo": "mask_overlay"
     },
     {
       "id": "mask_component",
@@ -394,7 +882,8 @@
       "related": [
         "mask",
         "mask_mode"
-      ]
+      ],
+      "body": "One source of selection. Several stack in a list, each [[mask_mode|adding, subtracting or intersecting]] with what is beneath it.\n\nSo \"the sky, but not the building\" is two components, not one clever one."
     },
     {
       "id": "mask_mode",
@@ -403,7 +892,8 @@
       "summary": "How a component folds into the mask beneath it.",
       "related": [
         "mask_component"
-      ]
+      ],
+      "body": "How a [[mask_component|component]] folds into the ones below. Add widens the selection, subtract cuts out of it, intersect keeps only the overlap.\n\nThe first component in a mask has nothing to combine with, so its mode is ignored."
     },
     {
       "id": "brush",
@@ -413,7 +903,27 @@
       "related": [
         "mask",
         "mask_component"
-      ]
+      ],
+      "body": "Paint the selection by hand. Size, hardness and opacity are yours; painting with erase on takes it back.\n\nAn unpainted brush selects nothing — the layer stays hidden until you make the first stroke.",
+      "parameters": [
+        {
+          "name": "Size",
+          "what": "How wide the stroke is."
+        },
+        {
+          "name": "Hardness",
+          "what": "How soft its edge is."
+        },
+        {
+          "name": "Rotation",
+          "what": "Turns a non-round brush tip."
+        },
+        {
+          "name": "Shape",
+          "what": "Round, square or triangular."
+        }
+      ],
+      "demo": "brush"
     },
     {
       "id": "gradient",
@@ -423,6 +933,22 @@
       "related": [
         "mask",
         "feather"
+      ],
+      "body": "A smooth fall from applied to not applied, dragged across the frame. Linear for a horizon, radial for a spot.\n\nThe classic use is a sky: drag from the top down and the [[layer]] fades out before it reaches the ground.",
+      "demo": "gradient_bar",
+      "parameters": [
+        {
+          "name": "Start / End",
+          "what": "Drag the two handles across the photo to set where the fall runs."
+        },
+        {
+          "name": "Feather",
+          "what": "How gradual the fall is."
+        },
+        {
+          "name": "Style",
+          "what": "Linear for a horizon, radial for a spot."
+        }
       ]
     },
     {
@@ -433,6 +959,18 @@
       "related": [
         "mask",
         "histogram"
+      ],
+      "body": "Select by brightness rather than by place. Pick a band — shadows only, highlights only, something between — and the layer lands only there.\n\nFade softens the edge of the band, which is the difference between a natural result and a visible step.",
+      "demo": "tone_range",
+      "parameters": [
+        {
+          "name": "Range",
+          "what": "Which brightnesses are selected — shadows, highlights, or a band between."
+        },
+        {
+          "name": "Fade",
+          "what": "Softens the band's edges. Without it the selection has a visible step."
+        }
       ]
     },
     {
@@ -443,6 +981,17 @@
       "related": [
         "mask",
         "depth"
+      ],
+      "body": "Finds the main subject and selects it, no painting required. Runs on the device, and needs a recent one.\n\nIt is a starting point rather than a finish: add a [[brush]] component on top to fix what it missed.",
+      "parameters": [
+        {
+          "name": "Refine",
+          "what": "Grows or shrinks the found edge."
+        },
+        {
+          "name": "Feather",
+          "what": "Softens it."
+        }
       ]
     },
     {
@@ -453,6 +1002,17 @@
       "related": [
         "mask",
         "subject"
+      ],
+      "body": "Selects by distance from the camera, using the depth the photo was captured with or an estimate made on the device.\n\nUseful for pushing a background back without touching the person in front of it.",
+      "parameters": [
+        {
+          "name": "Near / Far",
+          "what": "The distance band that gets selected."
+        },
+        {
+          "name": "Feather",
+          "what": "Softens the band's edges."
+        }
       ]
     },
     {
@@ -462,6 +1022,13 @@
       "summary": "How soft the edge of a mask is.",
       "related": [
         "mask"
+      ],
+      "body": "How soft the edge of a mask is. Zero is a cut; higher blurs the transition over more pixels.\n\nAlmost every mask wants a little. A hard edge is what makes an edit look pasted on.",
+      "parameters": [
+        {
+          "name": "Feather",
+          "what": "How soft the mask edge is. Zero is a cut."
+        }
       ]
     },
     {
@@ -472,6 +1039,13 @@
       "related": [
         "mask",
         "opacity"
+      ],
+      "body": "How strongly a mask applies where it is fully white. Drop it and the whole mask gets gentler without redrawing anything.\n\nDifferent from [[opacity]], which fades the layer itself.",
+      "parameters": [
+        {
+          "name": "Density",
+          "what": "How strongly the mask applies where it is fully white."
+        }
       ]
     },
     {
@@ -481,7 +1055,9 @@
       "summary": "Swap what a mask selects for what it does not.",
       "related": [
         "mask"
-      ]
+      ],
+      "body": "Swaps what a mask selects for what it does not. Selected the sky and wanted the ground — one tap.\n\nWorks on a single [[mask_component|component]] as well as on the whole mask.",
+      "demo": "toggles"
     },
     {
       "id": "rubylith",
@@ -490,7 +1066,9 @@
       "summary": "The red tint that shows a mask while you are editing it.",
       "related": [
         "mask"
-      ]
+      ],
+      "body": "The red tint shown while you edit a mask: it covers what the mask is hiding. It exists only on screen and is never in the export.\n\nThe name is borrowed from the red film used to cut masks by hand before any of this was digital.",
+      "demo": "mask_overlay"
     },
     {
       "id": "blend_mode",
@@ -500,6 +1078,26 @@
       "related": [
         "opacity",
         "blend_if"
+      ],
+      "body": "How a layer's result is combined with everything under it, rather than simply covering it. Multiply darkens, Screen lightens, Soft Light adds contrast around the midtones.\n\nNormal is the plain answer: what the layer produced, at its [[opacity]].",
+      "demo": "blend_modes",
+      "parameters": [
+        {
+          "name": "Normal",
+          "what": "The layer's result, at its opacity."
+        },
+        {
+          "name": "Multiply / Darken",
+          "what": "Only darkens. White does nothing."
+        },
+        {
+          "name": "Screen / Lighten",
+          "what": "Only lightens. Black does nothing."
+        },
+        {
+          "name": "Overlay / Soft Light",
+          "what": "Adds contrast around the midtones."
+        }
       ]
     },
     {
@@ -510,6 +1108,13 @@
       "related": [
         "blend_mode",
         "density"
+      ],
+      "body": "How much of the layer reaches the result. At 50% you get half the effect, whatever the effect is.\n\nThe fastest fix for an edit that is right in kind but too strong.",
+      "parameters": [
+        {
+          "name": "Opacity",
+          "what": "How much of the layer reaches the result. At 50% you get half of whatever it does."
+        }
       ]
     },
     {
@@ -520,6 +1125,22 @@
       "related": [
         "blend_mode",
         "channel"
+      ],
+      "body": "Restrict a layer to a range of tones in what is underneath. \"Only where the photo is already dark\", without drawing a [[mask]].\n\nThe handles split to make the cut-off gradual instead of a hard line.",
+      "demo": "tone_range",
+      "parameters": [
+        {
+          "name": "This layer",
+          "what": "Hides parts of this layer by their own brightness."
+        },
+        {
+          "name": "Underlying",
+          "what": "Hides parts of it by the brightness of what is beneath."
+        },
+        {
+          "name": "Split handles",
+          "what": "Drag a handle apart to make the cut-off gradual instead of hard."
+        }
       ]
     },
     {
@@ -530,7 +1151,8 @@
       "related": [
         "layer_stack",
         "group"
-      ]
+      ],
+      "body": "Confines a layer to the one directly below it, as if it were masked by that layer's shape.\n\nUsed to tune a single layer's result without letting the tuning spill onto the rest of the [[layer_stack|stack]]."
     },
     {
       "id": "raw",
@@ -540,7 +1162,8 @@
       "related": [
         "develop",
         "raw_decoder"
-      ]
+      ],
+      "body": "The sensor's own reading, before a camera turned it into a picture. Bigger files, more room to move — highlights and white balance especially.\n\nA phone's ProRAW is partly processed already; a DSLR's file is not."
     },
     {
       "id": "develop",
@@ -550,6 +1173,21 @@
       "related": [
         "raw",
         "raw_decoder"
+      ],
+      "body": "Turning [[raw|RAW]] sensor data into an image: exposure, white balance, contrast, detail. It runs before any [[layer]] does.\n\nIt is not a one-way step — the original file stays, so you can develop it differently later.",
+      "parameters": [
+        {
+          "name": "Exposure / Contrast",
+          "what": "The starting point, before any layer."
+        },
+        {
+          "name": "White balance",
+          "what": "Temperature and tint, with the sensor's full range to move in."
+        },
+        {
+          "name": "Detail",
+          "what": "Sharpening and noise reduction, applied at demosaic time."
+        }
       ]
     },
     {
@@ -560,7 +1198,8 @@
       "related": [
         "raw",
         "develop"
-      ]
+      ],
+      "body": "Which of Apple's RAW converters produced the image. Newer generations demosaic and denoise differently.\n\nStamped into a [[project]] when the photo is imported, so nothing you have already edited changes underneath you."
     },
     {
       "id": "crop",
@@ -569,13 +1208,41 @@
       "summary": "Change the frame. Reversible, like everything else.",
       "related": [
         "non_destructive"
-      ]
+      ],
+      "body": "Change the frame. Reversible like everything else — the pixels outside are kept, not thrown away.\n\nStraightening lives here too.",
+      "parameters": [
+        {
+          "name": "Aspect",
+          "what": "Free, or locked to a ratio."
+        },
+        {
+          "name": "Straighten",
+          "what": "Rotates within the frame to level a horizon."
+        },
+        {
+          "name": "Flip / Rotate",
+          "what": "Ninety degrees at a time, or mirrored."
+        }
+      ],
+      "icon": "crop"
     },
     {
       "id": "undo",
       "title": "Undo",
       "category": "workflow",
-      "summary": "Two fingers on the photo undoes. Three redoes."
+      "summary": "Step back through your edits, and forward again.",
+      "body": "The two arrows in the top bar. Undo walks back through everything you have done in this session; redo walks forward again until you make a new change.\n\nNothing is lost either way — see [[non_destructive|nothing is overwritten]].",
+      "icon": "arrow.uturn.backward",
+      "parameters": [
+        {
+          "name": "Undo",
+          "what": "One step back. Works on layers, parameters, masks and the crop alike."
+        },
+        {
+          "name": "Redo",
+          "what": "One step forward, until a new edit replaces what was ahead."
+        }
+      ]
     },
     {
       "id": "export",
@@ -584,13 +1251,16 @@
       "summary": "Render the stack and save or share the result.",
       "related": [
         "project"
-      ]
+      ],
+      "body": "Renders the [[layer_stack|stack]] at full resolution and saves or shares the result. What you see on screen is a smaller [[proxy]]; the export is not.\n\nYour [[project]] stays exactly as it was.",
+      "icon": "square.and.arrow.down"
     },
     {
       "id": "proxy",
       "title": "Proxy",
       "category": "workflow",
-      "summary": "The smaller copy the editor draws while you work. Export always uses full resolution."
+      "summary": "The smaller copy the editor draws while you work. Export always uses full resolution.",
+      "body": "A smaller copy the editor draws while you work, so dragging a slider stays instant on a 48-megapixel photo.\n\nExport always uses the full resolution, so what you get is never the proxy."
     },
     {
       "id": "filters",
@@ -600,6 +1270,102 @@
       "related": [
         "color_lookup",
         "look"
+      ],
+      "body": "One-tap colour presets built on [[color_lookup|lookup tables]]. Intensity is the one control — the recipe inside is fixed.\n\nFor something you can open and change, use a [[look]] instead.",
+      "parameters": [
+        {
+          "name": "Intensity",
+          "what": "How much of the filter to apply. The recipe inside is fixed."
+        }
+      ],
+      "icon": "camera.filters"
+    },
+    {
+      "id": "adjust",
+      "title": "Adjust",
+      "category": "workflow",
+      "summary": "Light and colour in one pass, without opening the full editor.",
+      "body": "The quick route: exposure, contrast, warmth and saturation as plain sliders on one screen.\n\nEverything here exists as a [[layer]] in the editor too — this is the same maths with fewer decisions.",
+      "icon": "slider.horizontal.3",
+      "related": [
+        "auto",
+        "layer",
+        "filters"
+      ]
+    },
+    {
+      "id": "auto",
+      "title": "Auto",
+      "category": "workflow",
+      "summary": "One tap that reads the photo and sets the sliders for you.",
+      "body": "It is a chip **inside [[adjust|Adjust]]**, not a tool of its own: it moves the same sliders you can then move yourself, so nothing about it is a black box.\n\nIt reads the [[histogram]] and sets exposure and contrast from what it finds. Disagree with it and drag.",
+      "icon": "wand.and.stars",
+      "related": [
+        "adjust",
+        "histogram"
+      ]
+    },
+    {
+      "id": "alchemy",
+      "title": "Alchemy",
+      "category": "workflow",
+      "summary": "Blend several looks on a pad and keep what comes out.",
+      "body": "Drag a point around a pad whose corners are different looks; the result is a live mix of them. Roll the dice for a starting point you would not have chosen.\n\nWhat you land on can be saved as a [[look]] and used like any other.",
+      "icon": "sparkles",
+      "related": [
+        "look",
+        "filters"
+      ]
+    },
+    {
+      "id": "colorize",
+      "title": "Colorize",
+      "category": "workflow",
+      "summary": "Adds colour to a black and white photo.",
+      "body": "Runs a model on the device — nothing is uploaded. Best on real monochrome originals; a photo that was colour and got desaturated has less for it to work from.\n\nThe result lands as an ordinary [[layer]], so you can mask it or fade it.",
+      "icon": "paintpalette",
+      "related": [
+        "layer",
+        "black_white"
+      ]
+    },
+    {
+      "id": "portrait_blur",
+      "title": "Portrait Blur",
+      "category": "workflow",
+      "summary": "Throws the background out of focus, after the fact.",
+      "body": "Finds the subject and blurs everything else, with the falloff following [[depth]] where the photo carries it.\n\nAperture sets how strong the blur is; the edge is where the work shows, so check hair against a bright background.",
+      "icon": "camera.aperture",
+      "related": [
+        "depth",
+        "subject",
+        "mask"
+      ]
+    },
+    {
+      "id": "splash",
+      "title": "Splash",
+      "category": "workflow",
+      "summary": "Keeps one colour and drains the rest.",
+      "body": "Pick the colour to keep and everything else goes grey. It arrives as a [[hue_saturation|Hue & Saturation]] layer with its own [[mask]], so nothing about it is locked.\n\nThe range control decides how forgiving the match is.",
+      "icon": "drop.fill",
+      "related": [
+        "hue_saturation",
+        "mask",
+        "black_white"
+      ]
+    },
+    {
+      "id": "pipeline",
+      "title": "Pipeline",
+      "category": "workflow",
+      "summary": "A walk through your own edit, layer by layer.",
+      "body": "Shows the photo rebuilt one [[layer]] at a time, from the original up to the result — what each layer contributed, in order.\n\nThe fastest way to understand a [[look]] you did not build yourself.",
+      "icon": "square.3.layers.3d.down.right",
+      "related": [
+        "layer_stack",
+        "look",
+        "layer"
       ]
     }
   ]
