@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 5,
+  "version": 6,
   "categories": [
     {
       "id": "basics",
@@ -51,7 +51,7 @@
       "priority": 90,
       "photo": "LessonSkyPhoto",
       "photoExtension": "jpg",
-      "mode": "guided",
+      "mode": "hands_on",
       "stack": [
         {
           "id": "A0000000-0000-4000-8000-000000000101",
@@ -129,9 +129,8 @@
           "goal": "toggled_original"
         },
         {
-          "text": "Show the [[histogram|Histogram]], if you like reading light as a graph. Drag it anywhere.",
-          "anchor": "more_menu",
-          "goal": "toggled_histogram"
+          "text": "The Histogram lives in that menu too, for reading light as a graph. Drag it anywhere.",
+          "anchor": "more_menu"
         },
         {
           "text": "The two arrows in the top bar step back through your edits, and forward again.",
