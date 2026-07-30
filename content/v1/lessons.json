@@ -1,6 +1,44 @@
 {
   "schemaVersion": 1,
-  "version": 4,
+  "version": 5,
+  "categories": [
+    {
+      "id": "basics",
+      "title": "Getting Started",
+      "color": "#0974FF",
+      "order": 10
+    },
+    {
+      "id": "tone",
+      "title": "Light & Tone",
+      "color": "#F5A623",
+      "order": 20
+    },
+    {
+      "id": "colour",
+      "title": "Colour",
+      "color": "#B24BF3",
+      "order": 30
+    },
+    {
+      "id": "detail",
+      "title": "Detail & Finish",
+      "color": "#00B8A9",
+      "order": 40
+    },
+    {
+      "id": "looks",
+      "title": "Looks & Filters",
+      "color": "#F5473B",
+      "order": 50
+    },
+    {
+      "id": "masks",
+      "title": "Masks",
+      "color": "#00C74C",
+      "order": 60
+    }
+  ],
   "lessons": [
     {
       "id": "editor-tour",
@@ -9,6 +47,8 @@
       "icon": "map",
       "minutes": 3,
       "order": 10,
+      "category": "basics",
+      "priority": 90,
       "photo": "LessonSkyPhoto",
       "photoExtension": "jpg",
       "mode": "guided",
@@ -112,6 +152,8 @@
       "icon": "square.2.layers.3d",
       "minutes": 2,
       "order": 20,
+      "category": "basics",
+      "priority": 100,
       "photo": "LessonSkyPhoto",
       "photoExtension": "jpg",
       "mode": "hands_on",
@@ -175,6 +217,8 @@
       "icon": "sun.max",
       "minutes": 3,
       "order": 30,
+      "category": "tone",
+      "priority": 80,
       "photo": "bee-1200",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/bee-1200.jpg",
@@ -239,6 +283,8 @@
       "icon": "chart.line.uptrend.xyaxis",
       "minutes": 3,
       "order": 40,
+      "category": "tone",
+      "priority": 70,
       "photo": "castle-1800",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
@@ -303,6 +349,8 @@
       "icon": "paintpalette",
       "minutes": 3,
       "order": 50,
+      "category": "colour",
+      "priority": 60,
       "photo": "hero-poster",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
@@ -367,6 +415,8 @@
       "icon": "chart.bar",
       "minutes": 3,
       "order": 60,
+      "category": "tone",
+      "priority": 50,
       "photo": "castle-1800",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
@@ -436,6 +486,8 @@
       "icon": "circle.lefthalf.filled",
       "minutes": 3,
       "order": 70,
+      "category": "colour",
+      "priority": 40,
       "photo": "hero-poster",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
@@ -500,6 +552,8 @@
       "icon": "drop.halffull",
       "minutes": 3,
       "order": 80,
+      "category": "colour",
+      "priority": 35,
       "photo": "bee-1200",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/bee-1200.jpg",
@@ -571,6 +625,8 @@
       "icon": "wand.and.rays",
       "minutes": 4,
       "order": 90,
+      "category": "detail",
+      "priority": 30,
       "photo": "castle-1800",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
@@ -660,6 +716,8 @@
       "icon": "square.stack.3d.up",
       "minutes": 3,
       "order": 100,
+      "category": "looks",
+      "priority": 25,
       "photo": "hero-poster",
       "photoExtension": "jpg",
       "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
@@ -727,6 +785,8 @@
       "icon": "cloud.sun",
       "minutes": 2,
       "order": 110,
+      "category": "masks",
+      "priority": 20,
       "photo": "LessonSkyPhoto",
       "photoExtension": "jpg",
       "mode": "hands_on",
