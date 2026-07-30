@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 3,
+  "version": 4,
   "lessons": [
     {
       "id": "editor-tour",
@@ -172,7 +172,7 @@
       "id": "light-and-shadow",
       "title": "Light and Shadow",
       "subtitle": "Move one end without moving the other",
-      "icon": "circle.lefthalf.filled",
+      "icon": "sun.max",
       "minutes": 3,
       "order": 30,
       "photo": "bee-1200",
@@ -433,7 +433,7 @@
       "id": "black-and-white",
       "title": "Colour, Removed on Purpose",
       "subtitle": "Grey is a decision you make per colour",
-      "icon": "circle.righthalf.filled",
+      "icon": "circle.lefthalf.filled",
       "minutes": 3,
       "order": 70,
       "photo": "hero-poster",
