@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 6,
+  "version": 7,
   "categories": [
     {
       "id": "basics",
@@ -49,7 +49,7 @@
       "order": 10,
       "category": "basics",
       "priority": 90,
-      "photo": "LessonSkyPhoto",
+      "photo": "lesson-city",
       "photoExtension": "jpg",
       "mode": "hands_on",
       "stack": [
@@ -142,7 +142,8 @@
           "focus": "photo",
           "finale": true
         }
-      ]
+      ],
+      "photoURL": "https://gettruecolor.com/media/lesson-city.jpg"
     },
     {
       "id": "first-edit",
@@ -153,7 +154,7 @@
       "order": 20,
       "category": "basics",
       "priority": 100,
-      "photo": "LessonSkyPhoto",
+      "photo": "lesson-first",
       "photoExtension": "jpg",
       "mode": "hands_on",
       "stack": [
@@ -207,7 +208,8 @@
           "focus": "photo",
           "finale": true
         }
-      ]
+      ],
+      "photoURL": "https://gettruecolor.com/media/lesson-first.jpg"
     },
     {
       "id": "light-and-shadow",
@@ -218,9 +220,9 @@
       "order": 30,
       "category": "tone",
       "priority": 80,
-      "photo": "bee-1200",
+      "photo": "lesson-open-sky",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/bee-1200.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-open-sky.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -284,9 +286,9 @@
       "order": 40,
       "category": "tone",
       "priority": 70,
-      "photo": "castle-1800",
+      "photo": "lesson-flat-city",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-flat-city.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -350,9 +352,9 @@
       "order": 50,
       "category": "colour",
       "priority": 60,
-      "photo": "hero-poster",
+      "photo": "lesson-portrait",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-portrait.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -416,9 +418,9 @@
       "order": 60,
       "category": "tone",
       "priority": 50,
-      "photo": "castle-1800",
+      "photo": "lesson-flat-city",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-flat-city.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -487,9 +489,9 @@
       "order": 70,
       "category": "colour",
       "priority": 40,
-      "photo": "hero-poster",
+      "photo": "lesson-hues",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-hues.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -553,9 +555,9 @@
       "order": 80,
       "category": "colour",
       "priority": 35,
-      "photo": "bee-1200",
+      "photo": "lesson-warm-cool",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/bee-1200.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-warm-cool.jpg",
       "mode": "hands_on",
       "seedLook": "B0000000-0000-4000-8000-000000000001",
       "stack": [
@@ -626,9 +628,9 @@
       "order": 90,
       "category": "detail",
       "priority": 30,
-      "photo": "castle-1800",
+      "photo": "lesson-texture",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/castle-1800.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-texture.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -717,9 +719,9 @@
       "order": 100,
       "category": "looks",
       "priority": 25,
-      "photo": "hero-poster",
+      "photo": "lesson-city",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/hero-poster.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-city.jpg",
       "mode": "hands_on",
       "seedLook": "B0000000-0000-4000-8000-000000000003",
       "stack": [
@@ -786,7 +788,7 @@
       "order": 110,
       "category": "masks",
       "priority": 20,
-      "photo": "LessonSkyPhoto",
+      "photo": "lesson-open-sky",
       "photoExtension": "jpg",
       "mode": "hands_on",
       "stack": [
@@ -839,7 +841,8 @@
           "focus": "photo",
           "finale": true
         }
-      ]
+      ],
+      "photoURL": "https://gettruecolor.com/media/lesson-open-sky.jpg"
     }
   ]
 }
