@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 7,
+  "version": 8,
   "categories": [
     {
       "id": "basics",
@@ -220,9 +220,9 @@
       "order": 30,
       "category": "tone",
       "priority": 80,
-      "photo": "lesson-open-sky",
+      "photo": "lesson-lit-shade",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-open-sky.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-lit-shade.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -418,9 +418,9 @@
       "order": 60,
       "category": "tone",
       "priority": 50,
-      "photo": "lesson-flat-city",
+      "photo": "lesson-soft-dawn",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-flat-city.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-soft-dawn.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -719,9 +719,9 @@
       "order": 100,
       "category": "looks",
       "priority": 25,
-      "photo": "lesson-city",
+      "photo": "lesson-cinematic",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-city.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-cinematic.jpg",
       "mode": "hands_on",
       "seedLook": "B0000000-0000-4000-8000-000000000003",
       "stack": [
