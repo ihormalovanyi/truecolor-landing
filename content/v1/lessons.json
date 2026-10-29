@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 10,
+  "version": 11,
   "categories": [
     {
       "id": "basics",
@@ -43,7 +43,7 @@
     {
       "id": "editor-tour",
       "title": "Find Your Way Around",
-      "subtitle": "Layers, controls and the menu, in two minutes",
+      "subtitle": "Layers, controls and the menu",
       "pitch": "Layers in a stack, a panel for the one you picked, and one menu. The whole Pro Editor in a pass.",
       "outcomes": [
         "Hide a layer and bring it back",
