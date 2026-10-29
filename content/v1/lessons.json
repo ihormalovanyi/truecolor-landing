@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": 11,
+  "version": 12,
   "categories": [
     {
       "id": "basics",
@@ -55,9 +55,9 @@
       "order": 10,
       "category": "basics",
       "priority": 90,
-      "photo": "lesson-editor-tour-2",
+      "photo": "lesson-editor-tour-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-editor-tour-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-editor-tour-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -185,9 +185,9 @@
       "order": 20,
       "category": "basics",
       "priority": 100,
-      "photo": "lesson-first-edit-2",
+      "photo": "lesson-first-edit-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-first-edit-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-first-edit-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -262,9 +262,9 @@
       "order": 30,
       "category": "tone",
       "priority": 80,
-      "photo": "lesson-light-and-shadow-2",
+      "photo": "lesson-light-and-shadow-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-light-and-shadow-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-light-and-shadow-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -335,9 +335,9 @@
       "order": 40,
       "category": "tone",
       "priority": 70,
-      "photo": "lesson-contrast-2",
+      "photo": "lesson-contrast-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-contrast-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-contrast-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -407,9 +407,9 @@
       "order": 60,
       "category": "tone",
       "priority": 50,
-      "photo": "lesson-levels-2",
+      "photo": "lesson-levels-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-levels-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-levels-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -481,9 +481,9 @@
       "order": 50,
       "category": "colour",
       "priority": 60,
-      "photo": "lesson-colour-2",
+      "photo": "lesson-colour-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-colour-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-colour-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -514,7 +514,7 @@
           }
         },
         {
-          "text": "Raise Saturation hard. Everything gets louder, the face included.",
+          "text": "Raise Saturation hard. Everything gets louder, and the flowers turn to neon.",
           "anchor": "layer_panel",
           "focus": "photo",
           "goal": {
@@ -528,7 +528,7 @@
           "focus": "photo"
         },
         {
-          "text": "Vibrance lifts the dull coat, not the loud peonies. Saturation lifts both.",
+          "text": "Vibrance lifts the pale houses, not the loud flowers. Saturation lifts both.",
           "focus": "photo"
         },
         {
@@ -554,9 +554,9 @@
       "order": 55,
       "category": "colour",
       "priority": 65,
-      "photo": "lesson-white-balance-2",
+      "photo": "lesson-white-balance-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-white-balance-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-white-balance-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -628,9 +628,9 @@
       "order": 58,
       "category": "colour",
       "priority": 45,
-      "photo": "lesson-one-colour-2",
+      "photo": "lesson-one-colour-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-one-colour-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-one-colour-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -702,9 +702,9 @@
       "order": 70,
       "category": "colour",
       "priority": 40,
-      "photo": "lesson-black-and-white-2",
+      "photo": "lesson-black-and-white-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-black-and-white-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-black-and-white-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -739,7 +739,7 @@
           "focus": "photo"
         },
         {
-          "text": "Lower Blues. Everything blue goes dark; here that is the whole sky.",
+          "text": "Lower Blues. Everything blue goes dark; here that is the sky and the sea.",
           "anchor": "layer_panel",
           "focus": "photo",
           "goal": {
@@ -748,8 +748,8 @@
           }
         },
         {
-          "text": "Raise Reds, then drag the panel down: the tram turns bright.",
-          "wide": "Now raise Reds: the tram turns bright. Same photo, a new subject.",
+          "text": "Raise Reds, then drag the panel down: the car turns bright.",
+          "wide": "Now raise Reds: the car turns bright. Same photo, a new subject.",
           "anchor": "layer_panel",
           "focus": "photo"
         },
@@ -776,9 +776,9 @@
       "order": 90,
       "category": "detail",
       "priority": 30,
-      "photo": "lesson-detail-2",
+      "photo": "lesson-detail-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-detail-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-detail-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -823,12 +823,12 @@
           "focus": "photo"
         },
         {
-          "text": "Dehaze firms up the far mountains. Stop before the face looks heavy.",
+          "text": "Dehaze firms up the far mountains. Stop before the sky turns heavy.",
           "anchor": "layer_panel",
           "focus": "photo"
         },
         {
-          "text": "Push Denoise all the way: the face turns to plastic. Back off.",
+          "text": "Push Denoise all the way: the knit turns to plastic. Back off.",
           "anchor": "layer_panel",
           "focus": "photo"
         },
@@ -855,9 +855,9 @@
       "order": 95,
       "category": "detail",
       "priority": 35,
-      "photo": "lesson-lead-the-eye-2",
+      "photo": "lesson-lead-the-eye-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-lead-the-eye-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-lead-the-eye-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -930,9 +930,9 @@
       "order": 98,
       "category": "looks",
       "priority": 75,
-      "photo": "lesson-start-from-a-filter-2",
+      "photo": "lesson-start-from-a-filter-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-start-from-a-filter-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-start-from-a-filter-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
@@ -1008,9 +1008,9 @@
       "order": 100,
       "category": "looks",
       "priority": 25,
-      "photo": "lesson-inside-a-look-2",
+      "photo": "lesson-inside-a-look-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-inside-a-look-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-inside-a-look-3.jpg",
       "mode": "hands_on",
       "seedLook": "B0000000-0000-4000-8000-000000000003",
       "stack": [
@@ -1087,9 +1087,9 @@
       "order": 110,
       "category": "masks",
       "priority": 20,
-      "photo": "lesson-darken-the-sky-2",
+      "photo": "lesson-darken-the-sky-3",
       "photoExtension": "jpg",
-      "photoURL": "https://gettruecolor.com/media/lesson-darken-the-sky-2.jpg",
+      "photoURL": "https://gettruecolor.com/media/lesson-darken-the-sky-3.jpg",
       "mode": "hands_on",
       "stack": [
         {
